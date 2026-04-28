@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kamilimu Grand Prix | Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        racing: ['"Oswald"', 'sans-serif'],
+                        body: ['"DM Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        'f1-red': '#E10600',
+                        'f1-red-glow': '#FF1A1A',
+                        'carbon': '#0c0c0e',
+                        'carbon-mid': '#1a1a1f',
+                        'race-yellow': '#FDE100',
+                        'neon-white': '#F8FAFC',
+                    },
+                    animation: {
+                        'live-blink': 'live-blink 1.2s ease-in-out infinite',
+                        'ignition-pulse': 'ignition-pulse 0.6s ease-out infinite',
+                    },
+                    keyframes: {
+                        'live-blink': {
+                            '0%, 100%': { opacity: '1' },
+                            '50%': { opacity: '0.35' },
+                        },
+                        'ignition-pulse': {
+                            '0%, 100%': { boxShadow: '0 0 20px rgba(253, 225, 0, 0.4), 0 0 40px rgba(225, 6, 0, 0.3)' },
+                            '50%': { boxShadow: '0 0 35px rgba(253, 225, 0, 0.8), 0 0 60px rgba(225, 6, 0, 0.5)' },
+                        },
+                    },
+                },
+            },
+        };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Oswald:ital,wght@0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <style>
+        .carbon-fiber {
+            background-color: #0c0c0e;
+            background-image:
+                repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(255,255,255,0.02) 2px, rgba(255,255,255,0.02) 4px),
+                repeating-linear-gradient(-45deg, transparent, transparent 2px, rgba(0,0,0,0.15) 2px, rgba(0,0,0,0.15) 4px),
+                linear-gradient(180deg, #0c0c0e 0%, #141418 50%, #0c0c0e 100%);
+        }
+        .reveal {
+            opacity: 0;
+            transform: scale(0.92) translateY(2rem);
+            transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1), transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .reveal.reveal-visible {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+        .reveal-delay-1 { transition-delay: 0.08s; }
+        .reveal-delay-2 { transition-delay: 0.16s; }
+        .reveal-delay-3 { transition-delay: 0.24s; }
+        .reveal-delay-4 { transition-delay: 0.32s; }
+        .btn-ignition {
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.2s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+        }
+        .btn-ignition::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(120deg, transparent 30%, rgba(253, 225, 0, 0.35) 50%, transparent 70%);
+            transform: translateX(-100%);
+            transition: transform 0.5s ease;
+        }
+        .btn-ignition:hover::before {
+            transform: translateX(100%);
+        }
+        .btn-ignition:hover {
+            transform: scale(1.03) skewX(-0.5deg);
+            box-shadow:
+                0 0 0 1px rgba(253, 225, 0, 0.9),
+                0 0 30px rgba(225, 6, 0, 0.85),
+                0 0 60px rgba(253, 225, 0, 0.35);
+            border-color: #FDE100;
+        }
+        .btn-ignition:active {
+            transform: scale(0.98);
+        }
+        .speed-line {
+            background: linear-gradient(90deg, transparent, rgba(225, 6, 0, 0.4), transparent);
+            height: 2px;
+            animation: speed-sweep 3s ease-in-out infinite;
+        }
+        @keyframes speed-sweep {
+            0%, 100% { opacity: 0.3; transform: scaleX(0.3); }
+            50% { opacity: 1; transform: scaleX(1); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .reveal { opacity: 1; transform: none; transition: none; }
+            .speed-line { animation: none; }
+            .animate-live-blink { animation: none; opacity: 1; }
+        }
+    </style>
+</head>
+<body class="font-body text-neon-white antialiased carbon-fiber min-h-screen">
+    <!-- Ambient speed streaks -->
+    <div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
+        <div class="absolute top-1/4 left-0 w-full speed-line opacity-40"></div>
+        <div class="absolute top-2/3 left-0 w-full speed-line opacity-25" style="animation-delay: 1s;"></div>
+    </div>
+
+    <div class="relative z-10">
+        <!-- 1. The Starting Grid -->
+        <header class="relative min-h-screen flex flex-col justify-center px-4 sm:px-8 lg:px-16 pt-20 pb-16 overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-br from-f1-red/10 via-transparent to-transparent pointer-events-none"></div>
+            <div class="absolute right-0 top-1/2 -translate-y-1/2 w-1/2 max-w-xl opacity-30 lg:opacity-50 pointer-events-none">
+                <svg viewBox="0 0 400 200" class="w-full h-auto text-f1-red drop-shadow-[0_0_40px_rgba(225,6,0,0.6)]" aria-hidden="true">
+                    <!-- Stylized F1 silhouette + bolt accent -->
+                    <path fill="currentColor" d="M320 95 L380 88 L395 100 L380 112 L320 105 Z M50 100 L180 75 L280 82 L300 100 L280 118 L180 125 L50 100 Z M185 78 L265 85 L275 100 L265 115 L185 122 L165 100 Z" opacity="0.9"/>
+                    <path fill="#FDE100" d="M95 100 L130 85 L125 100 L130 115 Z M140 92 L155 100 L140 108 Z" opacity="0.85"/>
+                </svg>
+            </div>
+
+            <div class="max-w-4xl relative">
+                <p class="reveal font-racing italic font-bold text-race-yellow tracking-[0.35em] text-sm sm:text-base uppercase mb-4">The Starting Grid</p>
+                <h1 class="reveal reveal-delay-1 font-racing italic font-bold text-4xl sm:text-5xl lg:text-6xl uppercase leading-tight text-white drop-shadow-[0_4px_24px_rgba(225,6,0,0.45)]">
+                    <span class="text-f1-red">[Your Name]</span>
+                    <span class="text-neon-white/90"> | PILOT | </span>
+                    <span class="text-race-yellow">KAMILIMU COHORT 10</span>
+                </h1>
+                <p class="reveal reveal-delay-2 mt-6 text-lg sm:text-xl text-neon-white/80 max-w-2xl leading-relaxed">
+                    Fueling growth in <span class="text-race-yellow font-semibold">[Your Field]</span> &amp; Version Control.
+                </p>
+
+                <div class="reveal reveal-delay-3 mt-10 flex flex-wrap gap-4 items-center">
+                    <a href="#" class="btn-ignition group inline-flex items-center gap-3 px-8 py-4 bg-f1-red text-white font-racing italic font-bold text-lg uppercase tracking-wide border-2 border-f1-red-glow rounded-sm shadow-[0_0_20px_rgba(225,6,0,0.4)]">
+                        <span>Download CV</span>
+                        <svg class="w-6 h-6 text-race-yellow group-hover:scale-110 transition-transform" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z"/>
+                        </svg>
+                    </a>
+                    <span class="hidden sm:inline-block h-px w-24 bg-gradient-to-r from-f1-red to-transparent"></span>
+                </div>
+            </div>
+        </header>
+
+        <!-- 2. Pit Stop Learnings -->
+        <section class="px-4 sm:px-8 lg:px-16 py-20 border-t border-white/10" id="pit-stop">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="reveal font-racing italic font-bold text-3xl sm:text-4xl uppercase text-white mb-2 tracking-wide">
+                    <span class="text-f1-red">April</span> <span class="text-race-yellow">Pit Refresh</span>
+                </h2>
+                <p class="reveal reveal-delay-1 text-neon-white/60 mb-12 max-w-xl">Pit Stop Tasks — quick wins, maximum downforce on your career.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5 auto-rows-fr">
+                    <article class="reveal reveal-delay-1 md:col-span-2 lg:col-span-2 rounded-lg border border-white/10 bg-carbon-mid/80 backdrop-blur-sm p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] hover:border-f1-red/40 transition-colors duration-300">
+                        <h3 class="font-racing italic text-xl text-f1-red uppercase mb-3">Pit Stop · Version Control (Git)</h3>
+                        <p class="text-neon-white/85 leading-relaxed">🔧 Swapped the engine: Gained mastery of local/remote repositories, staging, and commits for efficient project history management.</p>
+                    </article>
+                    <article class="reveal reveal-delay-2 rounded-lg border border-white/10 bg-carbon-mid/80 backdrop-blur-sm p-6 hover:border-race-yellow/30 transition-colors duration-300">
+                        <h3 class="font-racing italic text-lg text-race-yellow uppercase mb-3">Pit Stop · Resume Excellence</h3>
+                        <p class="text-neon-white/85 text-sm leading-relaxed">⏱️ Optimized aerodynamics: Refocused professional presence on quantifiable impact (e.g., the program's 18% selection rate).</p>
+                    </article>
+                    <article class="reveal reveal-delay-1 rounded-lg border border-white/10 bg-carbon-mid/80 backdrop-blur-sm p-6 hover:border-f1-red/40 transition-colors duration-300">
+                        <h3 class="font-racing italic text-lg text-white uppercase mb-3">Pit Stop · ICT Careers</h3>
+                        <p class="text-neon-white/85 text-sm leading-relaxed">🏁 Track Analysis: Investigated tech ecosystems and mentorship pathways to define my race strategy.</p>
+                    </article>
+                    <article class="reveal reveal-delay-2 lg:col-span-2 rounded-lg border border-white/10 bg-carbon-mid/80 backdrop-blur-sm p-6 hover:border-race-yellow/30 transition-colors duration-300">
+                        <h3 class="font-racing italic text-xl text-f1-red uppercase mb-3">Pit Stop · Public Speaking</h3>
+                        <p class="text-neon-white/85 leading-relaxed">🎤 Victory Lane: Refined presentation skills for clear, engaging technical communication and networking.</p>
+                    </article>
+                    <article class="reveal reveal-delay-3 rounded-lg border border-white/10 bg-carbon-mid/80 backdrop-blur-sm p-6 hover:border-f1-red/40 transition-colors duration-300">
+                        <h3 class="font-racing italic text-lg text-race-yellow uppercase mb-3">Pit Stop · How to Learn</h3>
+                        <p class="text-neon-white/85 text-sm leading-relaxed">🧠 Engineering Specs: Adopted rapid skill acquisition frameworks for continuous, data-driven learning.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Telemetry Data -->
+        <section class="px-4 sm:px-8 lg:px-16 py-20 border-t border-white/10" id="telemetry">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="reveal font-racing italic font-bold text-3xl uppercase text-white mb-8">
+                    <span class="text-race-yellow">Telemetry</span> <span class="text-neon-white/80">Data</span>
+                </h2>
+                <div class="reveal reveal-delay-1 rounded-lg border border-f1-red/30 bg-[#08080a] overflow-hidden shadow-[0_0_40px_rgba(225,6,0,0.15)]">
+                    <div class="flex items-center justify-between px-4 py-3 bg-carbon-mid border-b border-white/10">
+                        <div class="flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-f1-red"></span>
+                            <span class="font-racing italic text-sm text-white/70 uppercase tracking-wider">Git Session</span>
+                        </div>
+                        <div class="flex items-center gap-2 px-2 py-1 rounded bg-race-yellow/10 border border-race-yellow/40">
+                            <span class="w-2 h-2 rounded-full bg-race-yellow animate-live-blink"></span>
+                            <span class="font-racing italic text-xs text-race-yellow uppercase">Live</span>
+                        </div>
+                    </div>
+                    <div class="p-6 font-mono text-sm sm:text-base">
+                        <div class="text-white/40 mb-2">$ git status</div>
+                        <div class="text-emerald-400/90 mb-4">On branch main — working tree clean</div>
+                        <div class="flex flex-wrap items-center gap-2 text-neon-white/90">
+                            <span class="text-f1-red">$</span>
+                            <span>git commit -m</span>
+                            <span class="text-race-yellow">"RECORD LAP: All April tasks complete"</span>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-3 gap-px bg-white/5 text-xs font-mono">
+                        <div class="bg-carbon-mid/90 p-3 text-center text-white/50">LAP TIME</div>
+                        <div class="bg-carbon-mid/90 p-3 text-center text-race-yellow">APR 2026</div>
+                        <div class="bg-carbon-mid/90 p-3 text-center text-f1-red">OPTIMAL</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Rules of Engagement -->
+        <section class="px-4 sm:px-8 lg:px-16 py-20 border-t border-white/10" id="rules">
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="reveal font-racing italic font-bold text-3xl uppercase text-white mb-6">
+                    Rules of <span class="text-f1-red">Engagement</span>
+                </h2>
+                <div class="reveal reveal-delay-1 rounded-lg border-2 border-race-yellow/25 bg-gradient-to-b from-carbon-mid/90 to-carbon px-8 py-10 shadow-[0_0_30px_rgba(253,225,0,0.08)]">
+                    <p class="font-racing italic text-lg sm:text-xl text-neon-white/90 uppercase tracking-wide leading-relaxed">
+                        Racetrack Rules
+                    </p>
+                    <p class="mt-6 text-neon-white/80 leading-relaxed text-base">
+                        Committed to professional integrity, collaboration, and the KamiLimu Code of Conduct.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Checkered Flag Footer -->
+        <footer class="relative px-4 sm:px-8 lg:px-16 pt-16 pb-12 border-t border-white/10 overflow-hidden">
+            <div class="absolute inset-0 opacity-[0.07] pointer-events-none" style="background-image: repeating-conic-gradient(#fff 0% 25%, transparent 0% 50%) 50% / 24px 24px;"></div>
+            <div class="relative max-w-5xl mx-auto">
+                <div class="reveal flex flex-col items-center">
+                    <div class="font-racing italic font-bold text-5xl sm:text-6xl lg:text-7xl uppercase tracking-tight text-center leading-none">
+                        <span class="text-f1-red drop-shadow-[0_0_20px_rgba(225,6,0,0.5)]">Kami</span><span class="text-white">Limu</span>
+                    </div>
+                    <p class="mt-2 font-racing italic text-race-yellow text-sm tracking-[0.4em] uppercase">Checkered Flag</p>
+                </div>
+
+                <div class="reveal reveal-delay-1 mt-12 flex flex-wrap justify-center gap-4 sm:gap-6">
+                    <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="btn-ignition group flex items-center justify-center min-w-[140px] px-6 py-4 bg-carbon-mid border-2 border-white/20 rounded-sm font-racing italic font-bold text-white uppercase text-sm tracking-wider hover:bg-white/5">
+                        <span class="text-neon-white/60 text-[10px] block w-full text-center mb-1 normal-case font-body not-italic tracking-normal">Official Partner</span>
+                        GitHub
+                    </a>
+                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="btn-ignition group flex flex-col items-center justify-center min-w-[140px] px-6 py-4 bg-carbon-mid border-2 border-white/20 rounded-sm font-racing italic font-bold text-white uppercase text-sm tracking-wider hover:bg-white/5">
+                        <span class="text-neon-white/60 text-[10px] block w-full text-center mb-1 normal-case font-body not-italic tracking-normal">Title Sponsor</span>
+                        LinkedIn
+                    </a>
+                </div>
+
+                <p class="reveal reveal-delay-2 mt-12 text-center text-neon-white/40 text-sm">
+                    Kamilimu Grand Prix · Cohort 10 · Built with HTML &amp; Tailwind
+                </p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        (function () {
+            var els = document.querySelectorAll('.reveal');
+            if (!('IntersectionObserver' in window)) {
+                els.forEach(function (el) { el.classList.add('reveal-visible'); });
+                return;
+            }
+            var observer = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('reveal-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { root: null, rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+            els.forEach(function (el) { observer.observe(el); });
+        })();
+    </script>
+</body>
+</html>
