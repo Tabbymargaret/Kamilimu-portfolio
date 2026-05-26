@@ -10,8 +10,9 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        racing: ['"Orbitron"', 'system-ui', 'sans-serif'],
-                        body: ['"Exo 2"', 'system-ui', 'sans-serif'],
+                        sans: ['"Titillium Web"', 'system-ui', 'sans-serif'],
+                        racing: ['"Titillium Web"', 'system-ui', 'sans-serif'],
+                        body: ['"Titillium Web"', 'system-ui', 'sans-serif'],
                     },
                     colors: {
                         'f1-red': '#E10600',
@@ -44,23 +45,24 @@
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Orbitron:ital,wght@1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,600;1,700&display=swap" rel="stylesheet">
     <style>
-        /* Main titles — F1 broadcast feel (Orbitron 900 italic) */
+        /* F1-aligned typography: Titillium Web — calmer editorial weight */
         .font-racing {
-            font-family: "Orbitron", system-ui, sans-serif;
-            font-style: italic;
-            font-weight: 900;
+            font-family: "Titillium Web", system-ui, sans-serif;
+            font-style: normal;
+            font-weight: 700;
+            letter-spacing: 0.03em;
         }
         h1, h2, h3 {
-            font-family: "Orbitron", system-ui, sans-serif;
-            font-style: italic;
-            font-weight: 900;
-            letter-spacing: 0.04em;
+            font-family: "Titillium Web", system-ui, sans-serif;
+            font-style: normal;
+            font-weight: 700;
+            letter-spacing: 0.03em;
         }
         .font-telemetry,
         .font-mono {
-            font-family: "Exo 2", system-ui, sans-serif;
+            font-family: "Titillium Web", system-ui, sans-serif;
         }
         .carbon-fiber-layer {
             background-color: #08080b;
@@ -68,8 +70,8 @@
             background-image:
                 repeating-linear-gradient(
                     -27deg,
-                    rgba(255,255,255,0.035) 0px,
-                    rgba(255,255,255,0.035) 1px,
+                    rgba(255,255,255,0.022) 0px,
+                    rgba(255,255,255,0.022) 1px,
                     transparent 1px,
                     transparent 9px,
                     rgba(0,0,0,0.35) 9px,
@@ -79,8 +81,8 @@
                 ),
                 repeating-linear-gradient(
                     27deg,
-                    rgba(255,255,255,0.025) 0px,
-                    rgba(255,255,255,0.025) 1px,
+                    rgba(255,255,255,0.018) 0px,
+                    rgba(255,255,255,0.018) 1px,
                     transparent 1px,
                     transparent 9px,
                     rgba(0,0,0,0.45) 9px,
@@ -89,128 +91,32 @@
                     transparent 18px
                 ),
                 repeating-linear-gradient(90deg, #0a0a0d 0px, #0d0d12 2px, #08080c 4px),
-                radial-gradient(ellipse 120% 80% at 50% -20%, rgba(225, 6, 0, 0.06), transparent 55%),
-                radial-gradient(ellipse 90% 50% at 100% 100%, rgba(253, 225, 0, 0.04), transparent 50%),
-                linear-gradient(175deg, #060608 0%, #0c0c10 42%, #08080d 100%);
+                linear-gradient(175deg, #070709 0%, #0b0b0f 52%, #08080d 100%);
         }
-        /* Horizontal “speed” motion blur over carbon (subtle drift) */
+        /* Decorative motion layer disabled for a calmer base */
         .carbon-fiber-motion {
-            background-color: transparent;
-            background-image:
-                repeating-linear-gradient(
-                    -27deg,
-                    rgba(255,255,255,0.05) 0px,
-                    rgba(255,255,255,0.05) 1px,
-                    transparent 1px,
-                    transparent 9px,
-                    rgba(0,0,0,0.3) 9px,
-                    rgba(0,0,0,0.3) 10px,
-                    transparent 10px,
-                    transparent 18px
-                ),
-                repeating-linear-gradient(
-                    27deg,
-                    rgba(255,255,255,0.04) 0px,
-                    rgba(255,255,255,0.04) 1px,
-                    transparent 1px,
-                    transparent 9px,
-                    rgba(0,0,0,0.38) 9px,
-                    rgba(0,0,0,0.38) 10px,
-                    transparent 10px,
-                    transparent 18px
-                ),
-                repeating-linear-gradient(90deg, rgba(10,10,14,0.9) 0px, rgba(14,14,18,0.9) 3px, rgba(8,8,12,0.9) 5px);
-            filter: blur(1.25px);
-            opacity: 0.42;
-            mix-blend-mode: soft-light;
-            animation: carbon-speed-drift 7.5s ease-in-out infinite alternate;
-            will-change: transform;
-        }
-        @keyframes carbon-speed-drift {
-            0% { transform: translate3d(-10px, 0, 0) skewX(-0.35deg); }
-            100% { transform: translate3d(10px, 0, 0) skewX(0.35deg); }
+            display: none;
         }
         .carbon-vignette {
             pointer-events: none;
-            background: radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.45) 100%);
+            background: radial-gradient(ellipse at center, transparent 50%, rgba(0, 0, 0, 0.2) 100%);
         }
-        /* Glowing telemetry-style racing snakes */
         .racing-lines-svg {
-            position: fixed;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 2;
-            overflow: visible;
-            opacity: 0.92;
-        }
-        .racing-lines-svg path {
-            fill: none;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-            vector-effect: non-scaling-stroke;
-            animation: trace-pulse 10s ease-in-out infinite alternate;
-        }
-        .racing-lines-svg path.line-red {
-            animation-delay: -2s;
-        }
-        .racing-lines-svg path.line-yellow {
-            animation-delay: -5s;
-        }
-        @keyframes trace-pulse {
-            0%, 100% { opacity: 0.42; stroke-width: 1.35; }
-            50% { opacity: 0.78; stroke-width: 1.85; }
+            display: none;
         }
         .reveal {
             opacity: 0;
-            transform: scale(0.92) translateY(2rem);
-            transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1), transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+            transform: translateY(0.875rem);
+            transition: opacity 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
         .reveal.reveal-visible {
             opacity: 1;
-            transform: scale(1) translateY(0);
+            transform: translateY(0);
         }
         .reveal-delay-1 { transition-delay: 0.08s; }
         .reveal-delay-2 { transition-delay: 0.16s; }
         .reveal-delay-3 { transition-delay: 0.24s; }
         .reveal-delay-4 { transition-delay: 0.32s; }
-        .btn-ignition {
-            position: relative;
-            overflow: hidden;
-            transition: transform 0.2s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-        }
-        .btn-ignition::before {
-            content: '';
-            position: absolute;
-            inset: -2px;
-            background: linear-gradient(120deg, transparent 30%, rgba(253, 225, 0, 0.35) 50%, transparent 70%);
-            transform: translateX(-100%);
-            transition: transform 0.5s ease;
-        }
-        .btn-ignition:hover::before {
-            transform: translateX(100%);
-        }
-        .btn-ignition:hover {
-            transform: scale(1.03) skewX(-0.5deg);
-            box-shadow:
-                0 0 0 1px rgba(253, 225, 0, 0.9),
-                0 0 30px rgba(225, 6, 0, 0.85),
-                0 0 60px rgba(253, 225, 0, 0.35);
-            border-color: #FDE100;
-        }
-        .btn-ignition:active {
-            transform: scale(0.98);
-        }
-        .speed-line {
-            background: linear-gradient(90deg, transparent, rgba(225, 6, 0, 0.4), transparent);
-            height: 2px;
-            animation: speed-sweep 3s ease-in-out infinite;
-        }
-        @keyframes speed-sweep {
-            0%, 100% { opacity: 0.3; transform: scaleX(0.3); }
-            50% { opacity: 1; transform: scaleX(1); }
-        }
         /* Hero — MCL38 stage (contained asset + breathing animation) */
         .hero-car-stage {
             position: relative;
@@ -224,9 +130,7 @@
             position: absolute;
             inset: -8% -12%;
             background:
-                radial-gradient(ellipse 70% 52% at 50% 18%, rgba(255, 135, 0, 0.11), transparent 55%),
-                radial-gradient(ellipse 55% 45% at 78% 58%, rgba(255, 135, 0, 0.08), transparent 52%),
-                radial-gradient(circle at 50% 100%, rgba(0, 0, 0, 0.48), transparent 58%);
+                radial-gradient(ellipse 70% 52% at 50% 22%, rgba(255, 135, 0, 0.04), transparent 58%);
             pointer-events: none;
             z-index: 0;
         }
@@ -235,7 +139,7 @@
             position: absolute;
             inset: auto 6% 0%;
             height: 28%;
-            background: radial-gradient(ellipse 88% 45% at 50% 0%, rgba(0, 0, 0, 0.52), transparent 72%);
+            background: radial-gradient(ellipse 88% 45% at 50% 0%, rgba(0, 0, 0, 0.35), transparent 75%);
             pointer-events: none;
             z-index: 0;
         }
@@ -250,11 +154,11 @@
             justify-content: center;
             transform-origin: 50% 55%;
             will-change: transform;
-            animation: breathing 4s ease-in-out infinite;
+            animation: breathing 7s ease-in-out infinite;
         }
         @keyframes breathing {
             0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+            50% { transform: scale(1.018); }
         }
         .hero-car-inner {
             position: relative;
@@ -272,8 +176,8 @@
             object-fit: contain;
             margin: 0 auto;
             filter:
-                drop-shadow(0 10px 28px rgba(0, 0, 0, 0.52))
-                drop-shadow(0 3px 8px rgba(0, 0, 0, 0.35));
+                drop-shadow(0 6px 16px rgba(0, 0, 0, 0.4))
+                drop-shadow(0 1px 3px rgba(0, 0, 0, 0.28));
         }
         @media (max-width: 1023px) {
             .hero-car-img {
@@ -287,19 +191,19 @@
             transform: translateX(-50%);
             width: 75%;
             height: clamp(64px, 12vh, 108px);
-            background: radial-gradient(ellipse 80% 100% at 50% 42%, rgba(255, 135, 0, 0.58), transparent 72%);
+            background: radial-gradient(ellipse 80% 100% at 50% 42%, rgba(255, 135, 0, 0.22), transparent 72%);
             pointer-events: none;
             z-index: -1;
-            animation: papayaGlowBreathing 4s ease-in-out infinite;
+            animation: papayaGlowBreathing 7s ease-in-out infinite;
         }
         @keyframes papayaGlowBreathing {
             0%, 100% {
-                opacity: 0.52;
-                filter: blur(14px);
+                opacity: 0.42;
+                filter: blur(12px);
             }
             50% {
-                opacity: 1;
-                filter: blur(22px);
+                opacity: 0.62;
+                filter: blur(15px);
             }
         }
         @keyframes car-rumble {
@@ -311,75 +215,195 @@
         .hero-car-inner.hero-car-inner--rumble {
             animation: car-rumble 0.065s linear infinite;
         }
-        /* START ENGINE — neon pit-lane yellow */
+        /* START ENGINE — calm emphasis */
         .btn-start-engine {
-            color: #0a0a0c;
-            background: linear-gradient(180deg, #fff64a 0%, #fff01f 45%, #e6d800 100%);
-            border: 2px solid rgba(255, 248, 80, 0.95);
-            box-shadow:
-                0 0 0 1px rgba(0, 0, 0, 0.35),
-                0 0 28px rgba(255, 240, 31, 0.75),
-                0 0 54px rgba(255, 200, 0, 0.45),
-                inset 0 1px 0 rgba(255, 255, 255, 0.55);
+            color: #f4f4f5;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: none;
         }
         .btn-start-engine:hover {
-            filter: brightness(1.06);
-            box-shadow:
-                0 0 0 1px rgba(0, 0, 0, 0.35),
-                0 0 36px rgba(255, 240, 31, 0.95),
-                0 0 72px rgba(255, 160, 0, 0.5),
-                inset 0 1px 0 rgba(255, 255, 255, 0.65);
+            filter: none;
+            background: rgba(255, 135, 0, 0.15);
+            border-color: rgba(255, 135, 0, 0.35);
         }
         .btn-start-engine:active {
-            transform: scale(0.98);
+            transform: translateY(1px);
         }
         /* Glass bento + pit-crew scroll-in */
         .glass-bento {
             position: relative;
             overflow: hidden;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 50%, rgba(0, 0, 0, 0.12) 100%);
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 8px 32px rgba(0, 0, 0, 0.35);
-            transition:
-                transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-                box-shadow 0.35s ease,
-                border-color 0.35s ease;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.28);
+            transition: border-color 0.22s ease, box-shadow 0.22s ease;
         }
         .glass-bento:hover {
-            border-color: rgba(225, 6, 0, 0.4);
-            box-shadow:
-                inset 0 1px 0 rgba(255, 255, 255, 0.1),
-                0 0 0 1px rgba(225, 6, 0, 0.25),
-                0 22px 50px -8px rgba(225, 6, 0, 0.45),
-                0 42px 80px -24px rgba(225, 6, 0, 0.35);
+            border-color: rgba(255, 255, 255, 0.14);
+            box-shadow: 0 6px 28px rgba(0, 0, 0, 0.32);
         }
-        /* F1-style red underglow */
         .glass-bento::after {
-            content: '';
-            position: absolute;
-            left: 8%;
-            right: 8%;
-            bottom: -14px;
-            height: 22px;
-            background: radial-gradient(ellipse 65% 100% at 50% 0%, rgba(225, 6, 0, 0.55), transparent 72%);
-            opacity: 0;
-            transition: opacity 0.35s ease;
-            pointer-events: none;
-            filter: blur(12px);
+            display: none;
         }
-        .glass-bento:hover::after {
+        /* Locked month cards (pit lane closed) */
+        .glass-month-locked {
+            filter: grayscale(1);
+            opacity: 0.88;
+        }
+        /* Race schedule — month cards open detail dialog */
+        .month-card-trigger {
+            cursor: pointer;
+        }
+        .month-card-trigger:focus {
+            outline: none;
+        }
+        .month-card-trigger:focus-visible {
+            box-shadow: 0 0 0 2px #08080b, 0 0 0 4px rgba(248, 131, 58, 0.55);
+        }
+        .month-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 200;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.28s ease, visibility 0.28s linear;
+        }
+        .month-modal.month-modal--open {
             opacity: 1;
+            visibility: visible;
+        }
+        .month-modal__backdrop {
+            position: absolute;
+            inset: 0;
+            background: rgba(2, 2, 4, 0.78);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        .month-modal__panel {
+            position: relative;
+            z-index: 1;
+            width: min(56rem, 100%);
+            max-height: min(92vh, 880px);
+            overflow-y: auto;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(12, 12, 18, 0.92);
+            box-shadow: 0 28px 80px rgba(0, 0, 0, 0.55);
+            border-radius: 0.75rem;
+        }
+        body.month-modal--scroll-lock {
+            overflow: hidden;
+        }
+        /* Month modal — viewer + filmstrip (many photos stay usable) */
+        .month-gallery-main-wrap {
+            min-height: 200px;
+            max-height: min(44vh, 420px);
+        }
+        .month-gallery-strip {
+            display: flex;
+            gap: 0.45rem;
+            overflow-x: auto;
+            overscroll-behavior-x: contain;
+            scroll-padding: 0.5rem;
+            padding-bottom: 0.35rem;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255, 255, 255, 0.28) transparent;
+            -webkit-overflow-scrolling: touch;
+        }
+        .month-gallery-strip::-webkit-scrollbar {
+            height: 6px;
+        }
+        .month-gallery-strip::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.22);
+            border-radius: 999px;
+        }
+        .month-gallery-strip::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 999px;
+        }
+        .month-gallery-thumb {
+            flex: 0 0 auto;
+            width: 4.75rem;
+            height: 3.125rem;
+            border-radius: 0.375rem;
+            overflow: hidden;
+            border: 2px solid transparent;
+            padding: 0;
+            opacity: 0.55;
+            transition: opacity 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+        }
+        .month-gallery-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .month-gallery-thumb:hover {
+            opacity: 0.9;
+            border-color: rgba(255, 255, 255, 0.12);
+        }
+        .month-gallery-thumb.is-current {
+            opacity: 1;
+            border-color: rgba(248, 131, 58, 0.75);
+            box-shadow: 0 0 0 1px rgba(248, 131, 58, 0.25);
+        }
+        .month-gallery-thumb:focus-visible {
+            outline: 2px solid rgba(248, 131, 58, 0.65);
+            outline-offset: 2px;
+            opacity: 1;
+        }
+        .glass-month-locked:hover {
+            border-color: rgba(255, 255, 255, 0.1);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 8px 28px rgba(0, 0, 0, 0.3);
+        }
+        .glass-month-locked:hover::after {
+            opacity: 0 !important;
+        }
+        .glass-month-thumb-locked {
+            filter: grayscale(1) brightness(0.75);
+            background: repeating-linear-gradient(
+                -20deg,
+                rgba(255, 255, 255, 0.03),
+                rgba(255, 255, 255, 0.03) 12px,
+                rgba(0, 0, 0, 0.06) 12px,
+                rgba(0, 0, 0, 0.06) 24px
+            );
+        }
+        /* Medium — simple filled CTA */
+        .btn-medium-cta {
+            position: relative;
+            overflow: hidden;
+            transition: background-color 0.2s ease, border-color 0.2s ease;
+            background: rgba(255, 135, 0, 0.18);
+            border: 1px solid rgba(255, 135, 0, 0.38);
+            box-shadow: none;
+            color: #f8fafc;
+            text-shadow: none;
+            font-weight: 700;
+        }
+        .btn-medium-cta:hover {
+            transform: none;
+            filter: none;
+            background: rgba(255, 135, 0, 0.28);
+            border-color: rgba(255, 135, 0, 0.5);
+        }
+        .btn-medium-cta:active {
+            transform: none;
+            opacity: 0.93;
         }
         .bento-enter {
             opacity: 0;
             transition-property: opacity, transform;
             transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
         }
-        .bento-enter.bento-from-left { transform: translateX(-52px); }
-        .bento-enter.bento-from-right { transform: translateX(52px); }
-        .bento-enter.bento-from-bottom { transform: translateY(48px); }
+        .bento-enter.bento-from-left { transform: translateX(-20px); }
+        .bento-enter.bento-from-right { transform: translateX(20px); }
+        .bento-enter.bento-from-bottom { transform: translateY(20px); }
         .bento-dur-fast { transition-duration: 0.52s; }
         .bento-dur-mid { transition-duration: 0.78s; }
         .bento-dur-slow { transition-duration: 1.12s; }
@@ -389,55 +413,262 @@
         }
         /* F1 telemetry dashboard */
         .telemetry-dash {
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            background: linear-gradient(180deg, rgba(12, 12, 16, 0.95) 0%, rgba(6, 6, 8, 0.98) 100%);
-            box-shadow:
-                0 0 0 1px rgba(225, 6, 0, 0.12),
-                0 0 60px rgba(225, 6, 0, 0.08),
-                inset 0 1px 0 rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.09);
+            background: rgba(10, 10, 13, 0.85);
+            box-shadow: 0 4px 28px rgba(0, 0, 0, 0.32);
         }
         .telemetry-grid-line {
             background-image: repeating-linear-gradient(
                 90deg,
                 transparent,
                 transparent 3px,
-                rgba(225, 6, 0, 0.07) 3px,
-                rgba(225, 6, 0, 0.07) 4px
+                rgba(255, 255, 255, 0.04) 3px,
+                rgba(255, 255, 255, 0.04) 4px
             );
         }
         .telemetry-spark {
-            background: linear-gradient(180deg, rgba(16, 185, 129, 0.5) 0%, rgba(16, 185, 129, 0.15) 100%);
+            background: linear-gradient(180deg, rgba(16, 185, 129, 0.2) 0%, rgba(16, 185, 129, 0.06) 100%);
             mask-image: linear-gradient(90deg, transparent, black 15%, black 85%, transparent);
             border-radius: 2px;
         }
         .live-indicator {
-            box-shadow:
-                0 0 0 1px rgba(253, 225, 0, 0.5),
-                0 0 16px rgba(253, 225, 0, 0.45),
-                inset 0 0 8px rgba(253, 225, 0, 0.25);
-            animation: live-pulse-yellow 1.1s ease-in-out infinite;
-        }
-        @keyframes live-pulse-yellow {
-            0%, 100% { opacity: 1; box-shadow: 0 0 0 1px rgba(253, 225, 0, 0.55), 0 0 20px rgba(253, 225, 0, 0.5); }
-            50% { opacity: 0.92; box-shadow: 0 0 0 1px rgba(253, 225, 0, 0.35), 0 0 8px rgba(253, 225, 0, 0.25); }
+            box-shadow: none;
+            animation: none;
+            border-color: rgba(255, 255, 255, 0.2);
+            background: rgba(0, 0, 0, 0.35);
         }
         .btn-download-cv {
             transition: transform 0.2s ease, box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease;
         }
         .btn-download-cv:hover {
-            transform: scale(1.02);
-            border-color: rgba(255, 255, 255, 0.45);
-            box-shadow: 0 0 24px rgba(255, 255, 255, 0.08);
+            transform: none;
+            border-color: rgba(255, 255, 255, 0.32);
+            background: rgba(255, 255, 255, 0.07);
+            box-shadow: none;
         }
+        /* Opening splash — broadcast-style motion; mark is original; motion nods to user’s reference concept */
+        body.intro-splash-active {
+            overflow: hidden;
+            height: 100vh;
+        }
+        #site-intro {
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1.25rem;
+            background: radial-gradient(ellipse 85% 65% at 50% 42%, #14141c 0%, #060608 52%, #020203 100%);
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.75s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.75s linear;
+        }
+        #site-intro.intro-out {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        #site-intro .site-intro-vignette {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background: radial-gradient(ellipse 70% 55% at 50% 45%, transparent 0%, rgba(0, 0, 0, 0.55) 100%);
+            animation: introVignettePulse 2.8s ease-in-out 0.15s both;
+        }
+        @keyframes introVignettePulse {
+            0% { opacity: 0.4; }
+            35% { opacity: 1; }
+            100% { opacity: 0.85; }
+        }
+        #site-intro .site-intro-streaks {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        #site-intro .site-intro-streak {
+            position: absolute;
+            left: -40%;
+            width: 45%;
+            height: 3px;
+            border-radius: 999px;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.45),
+                rgba(253, 225, 0, 0.35),
+                rgba(225, 6, 0, 0.5),
+                transparent
+            );
+            filter: blur(1.2px);
+            opacity: 0;
+            animation: introStreakFly 1.05s cubic-bezier(0.25, 0.9, 0.35, 1) forwards;
+        }
+        #site-intro .site-intro-streak:nth-child(1) { top: 38%; animation-delay: 0.06s; }
+        #site-intro .site-intro-streak:nth-child(2) { top: 48%; animation-delay: 0.22s; height: 2px; opacity: 0; }
+        #site-intro .site-intro-streak:nth-child(3) { top: 58%; animation-delay: 0.38s; height: 2px; opacity: 0; }
+        @keyframes introStreakFly {
+            0% {
+                opacity: 0;
+                transform: translateX(-5%) skewX(-12deg) scaleX(0.85);
+            }
+            25% {
+                opacity: 0.85;
+            }
+            100% {
+                opacity: 0.15;
+                transform: translateX(320%) skewX(-12deg) scaleX(1);
+            }
+        }
+        #site-intro .site-intro-sweep {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: min(140%, 920px);
+            left: -20%;
+            pointer-events: none;
+            background: linear-gradient(
+                90deg,
+                transparent 35%,
+                rgba(225, 6, 0, 0.12) 48%,
+                rgba(255, 255, 255, 0.08) 50%,
+                rgba(225, 6, 0, 0.1) 52%,
+                transparent 68%
+            );
+            mix-blend-mode: screen;
+            opacity: 0;
+            transform: translateX(-30%) skewX(-12deg);
+            animation: introSweep 1s cubic-bezier(0.4, 0, 0.2, 1) 0.45s forwards;
+        }
+        @keyframes introSweep {
+            0% {
+                opacity: 0;
+                transform: translateX(-35%) skewX(-12deg);
+            }
+            35% {
+                opacity: 0.95;
+            }
+            100% {
+                opacity: 0;
+                transform: translateX(55%) skewX(-12deg);
+            }
+        }
+        #site-intro .site-intro-logo-shell {
+            position: relative;
+            perspective: 900px;
+            perspective-origin: 50% 45%;
+            z-index: 1;
+        }
+        #site-intro .site-intro-logo-clip {
+            animation:
+                introMarkWipe 0.95s cubic-bezier(0.45, 0, 0.15, 1) 0.12s both,
+                introMarkFocus 1.05s cubic-bezier(0.2, 0.85, 0.35, 1) 0.12s both;
+            will-change: clip-path, filter, transform;
+        }
+        #site-intro .site-intro-logo-stage {
+            transform-style: preserve-3d;
+            animation: introMarkPushIn 1.15s cubic-bezier(0.2, 0.85, 0.38, 1) 0.08s both;
+        }
+        @keyframes introMarkWipe {
+            0% {
+                clip-path: inset(-12% 102% -12% -12%);
+            }
+            100% {
+                clip-path: inset(-12% -8% -12% -8%);
+            }
+        }
+        @keyframes introMarkFocus {
+            0% {
+                filter: blur(14px);
+                opacity: 0;
+            }
+            55% {
+                filter: blur(2px);
+                opacity: 1;
+            }
+            100% {
+                filter: blur(0);
+                opacity: 1;
+            }
+        }
+        @keyframes introMarkPushIn {
+            0% {
+                transform: translateZ(-160px) scale(1.28) rotateX(10deg);
+                opacity: 0.25;
+            }
+            70% {
+                transform: translateZ(28px) scale(1.02) rotateX(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateZ(0) scale(1) rotateX(0deg);
+                opacity: 1;
+            }
+        }
+        #site-intro .site-intro-logo {
+            width: min(340px, 78vw);
+            height: auto;
+            overflow: visible;
+            display: block;
+        }
+        #site-intro .intro-f-main {
+            fill: rgba(248, 250, 252, 0.96);
+        }
+        #site-intro .intro-f-strip {
+            fill: #e10600;
+            transform-origin: 88px 44px;
+            animation: introStripSnap 0.38s cubic-bezier(0.22, 1.12, 0.36, 1) 0.62s both;
+            filter: drop-shadow(0 0 14px rgba(225, 6, 0, 0.45));
+        }
+        @keyframes introStripSnap {
+            0% {
+                opacity: 0;
+                transform: translateX(-6px) scaleY(1.08) scaleX(0.2);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0) scaleY(1) scaleX(1);
+            }
+        }
+        #site-intro .intro-f-one {
+            fill: rgba(248, 250, 252, 0.96);
+        }
+        #site-intro .intro-f-strip-glow {
+            fill: transparent;
+            stroke: rgba(253, 225, 0, 0.35);
+            stroke-width: 1.25;
+            transform-origin: 88px 44px;
+            animation: introStripSnap 0.38s cubic-bezier(0.22, 1.12, 0.36, 1) 0.62s both;
+            pointer-events: none;
+        }
+        #site-intro .site-intro-ref {
+            font-family: "Titillium Web", system-ui, sans-serif;
+            font-size: 0.625rem;
+            letter-spacing: 0.06em;
+            text-transform: none;
+            max-width: 22rem;
+            text-align: center;
+            line-height: 1.55;
+            color: rgba(248, 250, 252, 0.38);
+            z-index: 1;
+            padding: 0 1rem;
+        }
+        #site-intro .site-intro-ref a {
+            color: rgba(253, 183, 99, 0.85);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+        #site-intro .site-intro-ref a:hover {
+            color: rgba(253, 210, 160, 0.95);
+        }
+
         @media (prefers-reduced-motion: reduce) {
             .reveal { opacity: 1; transform: none; transition: none; }
-            .speed-line { animation: none; }
-            .racing-lines-svg path { animation: none; opacity: 0.5; }
             .animate-live-blink { animation: none; opacity: 1; }
             .hero-car-breath-shell { animation: none !important; transform: scale(1) !important; }
-            .papaya-underglow { animation: none !important; opacity: 0.75 !important; filter: blur(16px) !important; }
-            .carbon-fiber-motion { animation: none !important; filter: blur(1px); transform: none !important; }
-            .papaya-underglow { animation: none !important; opacity: 0.75; }
+            .papaya-underglow { animation: none !important; opacity: 0.5 !important; filter: blur(12px) !important; }
             .hero-car-inner.hero-car-inner--rumble { animation: none !important; }
             .live-indicator { animation: none; opacity: 1; }
             .bento-enter {
@@ -445,16 +676,100 @@
                 transform: none !important;
                 transition: none !important;
             }
-            .live-indicator span.animate-ping { animation: none; display: none; }
+            #site-intro .intro-f-strip,
+            #site-intro .site-intro-logo-clip,
+            #site-intro .site-intro-logo-stage {
+                animation: none !important;
+            }
+            #site-intro .site-intro-streak,
+            #site-intro .site-intro-sweep,
+            #site-intro .site-intro-vignette {
+                animation: none !important;
+                opacity: 0 !important;
+            }
+            #site-intro .site-intro-logo-clip {
+                clip-path: none !important;
+                filter: none !important;
+                opacity: 1 !important;
+            }
+            #site-intro .site-intro-logo-stage {
+                transform: none !important;
+                opacity: 1 !important;
+            }
+            #site-intro .intro-f-strip-glow {
+                display: none;
+            }
+            .month-modal {
+                transition: none !important;
+            }
+            #site-intro {
+                display: none !important;
+            }
         }
     </style>
 </head>
 <body class="font-body text-neon-white antialiased min-h-screen bg-[#08080b]">
+    <!-- Opening splash: original racing mark — motion loosely follows the referenced concept (YouTube fan piece), not broadcast packages -->
+    <div id="site-intro" aria-hidden="true">
+        <div class="site-intro-vignette" aria-hidden="true"></div>
+        <div class="site-intro-streaks" aria-hidden="true">
+            <div class="site-intro-streak"></div>
+            <div class="site-intro-streak"></div>
+            <div class="site-intro-streak"></div>
+        </div>
+        <div class="site-intro-sweep" aria-hidden="true"></div>
+        <div class="site-intro-logo-shell">
+            <div class="site-intro-logo-stage">
+                <div class="site-intro-logo-clip">
+                    <svg class="site-intro-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210 88" role="img" aria-labelledby="site-intro-svg-title">
+                        <title id="site-intro-svg-title">Portfolio opening sequence</title>
+                        <path class="intro-f-main" d="M8 8h62v18H30v12h32v14H30v28H8V8z"/>
+                        <path class="intro-f-strip-glow" d="M74 6l15.5 76h12L86 6H74z"/>
+                        <path class="intro-f-strip" d="M74 6l15.5 76h12L86 6H74z"/>
+                        <path class="intro-f-one" d="M130 74V26L118 38V14H154V74h26v8H108v-8h22z"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <p class="site-intro-ref">
+            Opening motion styled after your reference:
+            <a href="https://www.youtube.com/watch?v=NxJfSeJgF60" target="_blank" rel="noopener noreferrer">F1 Logo Animation Concept</a>
+            · custom graphic, not ripped footage
+        </p>
+    </div>
+    <noscript><style>#site-intro{display:none!important}</style></noscript>
+    <script>
+        (function () {
+            var intro = document.getElementById('site-intro');
+            if (!intro) return;
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                intro.remove();
+                return;
+            }
+            document.body.classList.add('intro-splash-active');
+            var done = false;
+            function finalize() {
+                if (done) return;
+                done = true;
+                intro.remove();
+                document.body.classList.remove('intro-splash-active');
+            }
+            intro.addEventListener('transitionend', function (e) {
+                if (e.propertyName !== 'opacity') return;
+                if (!intro.classList.contains('intro-out')) return;
+                finalize();
+            });
+            window.setTimeout(function () {
+                intro.classList.add('intro-out');
+            }, 3600);
+            window.setTimeout(finalize, 5000);
+        })();
+    </script>
     <div class="fixed inset-0 z-0 carbon-fiber-layer pointer-events-none" aria-hidden="true"></div>
     <div class="fixed inset-0 z-0 carbon-fiber-motion pointer-events-none" aria-hidden="true"></div>
     <div class="fixed inset-0 carbon-vignette z-[1] pointer-events-none" aria-hidden="true"></div>
-    <!-- Ambient speed streaks -->
-    <div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
+    <!-- Decorative speed streaks (hidden — calmer UI) -->
+    <div class="fixed inset-0 pointer-events-none overflow-hidden z-0 hidden" aria-hidden="true">
         <div class="absolute top-1/4 left-0 w-full speed-line opacity-40"></div>
         <div class="absolute top-2/3 left-0 w-full speed-line opacity-25" style="animation-delay: 1s;"></div>
     </div>
@@ -487,30 +802,30 @@
     <div class="relative z-10">
         <!-- 1. Hero — Oscar Piastri · McLaren MCL38 -->
         <header class="relative min-h-screen flex flex-col justify-center px-4 sm:px-8 lg:px-12 xl:px-16 pt-20 pb-12 lg:pb-16 overflow-hidden">
-            <div class="absolute inset-0 bg-gradient-to-br from-papaya/15 via-transparent to-f1-red/10 pointer-events-none"></div>
+            <div class="absolute inset-0 bg-gradient-to-br from-white/[0.03] via-transparent to-transparent pointer-events-none"></div>
 
             <div class="max-w-[100rem] mx-auto w-full grid grid-cols-1 lg:grid-cols-5 gap-10 xl:gap-14 lg:gap-x-10 items-center lg:min-h-[min(92vh,900px)] relative z-[1]">
                 <!-- Left column (60%) — Telemetry / Pilot -->
                 <div class="relative min-w-0 order-2 lg:order-1 lg:col-span-3 flex flex-col justify-center py-4 lg:py-0">
-                    <p class="reveal font-telemetry font-semibold text-papaya/95 tracking-[0.3em] text-xs sm:text-sm uppercase mb-3">Oscar Piastri · McLaren Formula 1 · MCL38</p>
-                    <p class="reveal reveal-delay-1 font-telemetry font-medium text-neon-white/55 text-[10px] sm:text-xs uppercase tracking-[0.45em] mb-3">Pilot telemetry · Live profile</p>
-                    <h1 class="reveal reveal-delay-1 font-racing italic text-4xl sm:text-5xl xl:text-[2.75rem] uppercase leading-[1.05] text-white drop-shadow-[0_4px_32px_rgba(255,135,0,0.35)]">
-                        <span class="text-papaya">Tabitha Margaret</span><br/>
-                        <span class="text-white">Wangechi</span>
+                    <p class="reveal font-telemetry text-neon-white/45 text-xs sm:text-sm uppercase tracking-wide mb-3">Oscar Piastri · McLaren · MCL38</p>
+                    <p class="reveal reveal-delay-1 font-telemetry text-neon-white/35 text-[10px] uppercase tracking-wider mb-3">Portfolio</p>
+                    <h1 class="reveal reveal-delay-1 font-racing text-4xl sm:text-5xl xl:text-[2.75rem] uppercase leading-[1.05] text-white">
+                        <span class="text-papaya/80">Tabitha Margaret</span><br/>
+                        <span class="text-white/80">Wangechi</span>
                     </h1>
-                    <p class="reveal reveal-delay-2 mt-5 font-body text-lg sm:text-xl text-neon-white/90 max-w-xl leading-relaxed">
-                        High-octane <span class="text-papaya font-semibold">data science</span> — Kamilimu Cohort&nbsp;10. Channeling Papaya ambition on and off track.
+                    <p class="reveal reveal-delay-2 mt-5 font-body text-lg sm:text-xl text-neon-white/75 max-w-xl leading-relaxed">
+                        Portfolio and learning journey — <span class="text-papaya/90 font-semibold">data science</span> with Kamilimu Cohort&nbsp;10.
                     </p>
 
                     <div class="reveal reveal-delay-3 mt-10 flex flex-col sm:flex-row flex-wrap gap-4 items-stretch sm:items-center">
-                        <button type="button" id="btn-start-engine" class="btn-start-engine inline-flex items-center justify-center gap-3 px-8 py-4 font-racing italic font-black text-lg uppercase tracking-[0.2em] rounded-sm cursor-pointer">
+                        <button type="button" id="btn-start-engine" class="btn-start-engine inline-flex items-center justify-center gap-3 px-8 py-4 font-racing font-black text-lg uppercase tracking-[0.2em] rounded-sm cursor-pointer">
                             <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                                 <path d="M8 5v14l11-7z"/>
                             </svg>
                             <span>Start Engine</span>
                         </button>
-                        <a href="https://drive.google.com/file/d/1SLkWCYBeO9lJVJcoEuxyMHCtMqvjw7bp/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="btn-download-cv group inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/5 text-white font-racing italic font-bold text-lg uppercase tracking-wide border-2 border-white/25 rounded-sm backdrop-blur-sm">
-                            <svg class="w-5 h-5 text-papaya shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <a href="https://drive.google.com/file/d/1SLkWCYBeO9lJVJcoEuxyMHCtMqvjw7bp/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="btn-download-cv group inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/5 text-white font-racing font-bold text-lg uppercase tracking-wide border-2 border-white/25 rounded-sm backdrop-blur-sm">
+                            <svg class="w-5 h-5 text-white/45 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
                             </svg>
                             <span>Download CV</span>
@@ -536,33 +851,164 @@
             </audio>
         </header>
 
+        <!-- Race schedule — Months 1–8 -->
+        <section class="px-4 sm:px-8 lg:px-16 py-20 border-t border-white/10" id="race-schedule" aria-labelledby="race-schedule-heading">
+            <div class="max-w-6xl mx-auto">
+                <h2 id="race-schedule-heading" class="reveal font-racing text-3xl sm:text-4xl uppercase tracking-wide text-white mb-2">
+                    <span class="text-papaya/80">Race</span> <span class="text-white/80">schedule</span>
+                </h2>
+                <p class="reveal reveal-delay-1 font-telemetry text-neon-white/55 text-sm uppercase tracking-[0.35em] mb-4">Eight-month calendar · Kamilimu Cohort 10</p>
+                <p class="reveal reveal-delay-1 text-neon-white/70 max-w-2xl mb-12 leading-relaxed">From the formation lap through the full season — milestones month by month. <span class="text-neon-white/55">Tap or click a pit card to view photos from that stint and jump to Medium.</span></p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
+                    <!-- Month 1 · April -->
+                    <article class="bento-enter bento-from-bottom bento-dur-mid rounded-xl glass-bento flex flex-col overflow-hidden month-card-trigger outline-none transition-[transform,box-shadow] hover:shadow-lg active:scale-[0.99]" data-month="1" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Month 1, April — The Formation Lap — open gallery and Medium">
+                        <div class="aspect-[16/10] overflow-hidden bg-white/5 shrink-0">
+                            <img src="assets/month1.jpg" alt="" class="w-full h-full object-cover" width="640" height="400" loading="lazy" decoding="async" />
+                        </div>
+                        <div class="p-5 flex flex-col flex-1">
+                            <p class="font-telemetry text-[10px] uppercase tracking-[0.35em] text-white/45 mb-1">April</p>
+                            <h3 class="font-racing text-xl text-white uppercase mb-2">Month 1</h3>
+                            <p class="font-racing text-lg text-white/80 uppercase mb-3 leading-snug">The Formation Lap</p>
+                            <p class="font-body text-sm text-neon-white/80 leading-relaxed flex-1">Onboarding, Git Mastery, and Professional Branding.</p>
+                        </div>
+                    </article>
+
+                    <!-- Month 2 · May -->
+                    <article class="bento-enter bento-from-bottom bento-dur-slow rounded-xl glass-bento flex flex-col overflow-hidden month-card-trigger outline-none transition-[transform,box-shadow] hover:shadow-lg active:scale-[0.99]" data-month="2" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Month 2, May — The Acceleration Phase — open gallery and Medium">
+                        <div class="aspect-[16/10] overflow-hidden bg-white/5 shrink-0">
+                            <img src="assets/month2.jpg" alt="" class="w-full h-full object-cover" width="640" height="400" loading="lazy" decoding="async" />
+                        </div>
+                        <div class="p-5 flex flex-col flex-1">
+                            <p class="font-telemetry text-[10px] uppercase tracking-[0.35em] text-white/45 mb-1">May</p>
+                            <h3 class="font-racing text-xl text-white uppercase mb-2">Month 2</h3>
+                            <p class="font-racing text-lg text-white/80 uppercase mb-3 leading-snug">The Acceleration Phase</p>
+                            <p class="font-body text-sm text-neon-white/80 leading-relaxed flex-1">Public Speaking, Civic Literacy Hackathon, and Advocacy.</p>
+                        </div>
+                    </article>
+
+                    <!-- Months 3–8 · Locked -->
+                    <article class="bento-enter bento-from-bottom bento-dur-fast rounded-xl glass-bento glass-month-locked flex flex-col overflow-hidden month-card-trigger outline-none transition-[transform,box-shadow] hover:shadow-lg active:scale-[0.99]" data-month="3" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Month 3 — coming soon; open preview">
+                        <div class="aspect-[16/10] glass-month-thumb-locked flex flex-col items-center justify-center shrink-0 border-b border-white/10">
+                            <svg class="w-12 h-12 text-neon-white/45 mb-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" aria-hidden="true">
+                                <rect x="5" y="11" width="14" height="10" rx="1.5" />
+                                <path d="M8 11V7a4 4 0 018 0v4" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <span class="font-racing text-[10px] uppercase tracking-[0.4em] text-neon-white/40">Locked</span>
+                        </div>
+                        <div class="p-5 flex flex-col flex-1">
+                            <p class="font-telemetry text-[10px] uppercase tracking-[0.35em] text-white/35 mb-1">Coming</p>
+                            <h3 class="font-racing text-xl text-white/65 uppercase mb-2">Month 3</h3>
+                            <p class="font-racing text-base text-neon-white/45 uppercase mb-3">Coming soon</p>
+                            <p class="font-body text-sm text-neon-white/45 leading-relaxed flex-1">Pit lane isn’t open yet — telemetry will drop when this phase goes live.</p>
+                        </div>
+                    </article>
+                    <article class="bento-enter bento-from-bottom bento-dur-mid rounded-xl glass-bento glass-month-locked flex flex-col overflow-hidden month-card-trigger outline-none transition-[transform,box-shadow] hover:shadow-lg active:scale-[0.99]" data-month="4" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Month 4 — coming soon; open preview">
+                        <div class="aspect-[16/10] glass-month-thumb-locked flex flex-col items-center justify-center shrink-0 border-b border-white/10">
+                            <svg class="w-12 h-12 text-neon-white/45 mb-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" aria-hidden="true">
+                                <rect x="5" y="11" width="14" height="10" rx="1.5" />
+                                <path d="M8 11V7a4 4 0 018 0v4" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <span class="font-racing text-[10px] uppercase tracking-[0.4em] text-neon-white/40">Locked</span>
+                        </div>
+                        <div class="p-5 flex flex-col flex-1">
+                            <p class="font-telemetry text-[10px] uppercase tracking-[0.35em] text-white/35 mb-1">Coming</p>
+                            <h3 class="font-racing text-xl text-white/65 uppercase mb-2">Month 4</h3>
+                            <p class="font-racing text-base text-neon-white/45 uppercase mb-3">Coming soon</p>
+                            <p class="font-body text-sm text-neon-white/45 leading-relaxed flex-1">Pit lane isn’t open yet — telemetry will drop when this phase goes live.</p>
+                        </div>
+                    </article>
+                    <article class="bento-enter bento-from-bottom bento-dur-slow rounded-xl glass-bento glass-month-locked flex flex-col overflow-hidden month-card-trigger outline-none transition-[transform,box-shadow] hover:shadow-lg active:scale-[0.99]" data-month="5" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Month 5 — coming soon; open preview">
+                        <div class="aspect-[16/10] glass-month-thumb-locked flex flex-col items-center justify-center shrink-0 border-b border-white/10">
+                            <svg class="w-12 h-12 text-neon-white/45 mb-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" aria-hidden="true">
+                                <rect x="5" y="11" width="14" height="10" rx="1.5" />
+                                <path d="M8 11V7a4 4 0 018 0v4" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <span class="font-racing text-[10px] uppercase tracking-[0.4em] text-neon-white/40">Locked</span>
+                        </div>
+                        <div class="p-5 flex flex-col flex-1">
+                            <p class="font-telemetry text-[10px] uppercase tracking-[0.35em] text-white/35 mb-1">Coming</p>
+                            <h3 class="font-racing text-xl text-white/65 uppercase mb-2">Month 5</h3>
+                            <p class="font-racing text-base text-neon-white/45 uppercase mb-3">Coming soon</p>
+                            <p class="font-body text-sm text-neon-white/45 leading-relaxed flex-1">Pit lane isn’t open yet — telemetry will drop when this phase goes live.</p>
+                        </div>
+                    </article>
+                    <article class="bento-enter bento-from-bottom bento-dur-fast rounded-xl glass-bento glass-month-locked flex flex-col overflow-hidden month-card-trigger outline-none transition-[transform,box-shadow] hover:shadow-lg active:scale-[0.99]" data-month="6" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Month 6 — coming soon; open preview">
+                        <div class="aspect-[16/10] glass-month-thumb-locked flex flex-col items-center justify-center shrink-0 border-b border-white/10">
+                            <svg class="w-12 h-12 text-neon-white/45 mb-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" aria-hidden="true">
+                                <rect x="5" y="11" width="14" height="10" rx="1.5" />
+                                <path d="M8 11V7a4 4 0 018 0v4" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <span class="font-racing text-[10px] uppercase tracking-[0.4em] text-neon-white/40">Locked</span>
+                        </div>
+                        <div class="p-5 flex flex-col flex-1">
+                            <p class="font-telemetry text-[10px] uppercase tracking-[0.35em] text-white/35 mb-1">Coming</p>
+                            <h3 class="font-racing text-xl text-white/65 uppercase mb-2">Month 6</h3>
+                            <p class="font-racing text-base text-neon-white/45 uppercase mb-3">Coming soon</p>
+                            <p class="font-body text-sm text-neon-white/45 leading-relaxed flex-1">Pit lane isn’t open yet — telemetry will drop when this phase goes live.</p>
+                        </div>
+                    </article>
+                    <article class="bento-enter bento-from-bottom bento-dur-mid rounded-xl glass-bento glass-month-locked flex flex-col overflow-hidden month-card-trigger outline-none transition-[transform,box-shadow] hover:shadow-lg active:scale-[0.99]" data-month="7" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Month 7 — coming soon; open preview">
+                        <div class="aspect-[16/10] glass-month-thumb-locked flex flex-col items-center justify-center shrink-0 border-b border-white/10">
+                            <svg class="w-12 h-12 text-neon-white/45 mb-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" aria-hidden="true">
+                                <rect x="5" y="11" width="14" height="10" rx="1.5" />
+                                <path d="M8 11V7a4 4 0 018 0v4" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <span class="font-racing text-[10px] uppercase tracking-[0.4em] text-neon-white/40">Locked</span>
+                        </div>
+                        <div class="p-5 flex flex-col flex-1">
+                            <p class="font-telemetry text-[10px] uppercase tracking-[0.35em] text-white/35 mb-1">Coming</p>
+                            <h3 class="font-racing text-xl text-white/65 uppercase mb-2">Month 7</h3>
+                            <p class="font-racing text-base text-neon-white/45 uppercase mb-3">Coming soon</p>
+                            <p class="font-body text-sm text-neon-white/45 leading-relaxed flex-1">Pit lane isn’t open yet — telemetry will drop when this phase goes live.</p>
+                        </div>
+                    </article>
+                    <article class="bento-enter bento-from-bottom bento-dur-slow rounded-xl glass-bento glass-month-locked flex flex-col overflow-hidden month-card-trigger outline-none transition-[transform,box-shadow] hover:shadow-lg active:scale-[0.99]" data-month="8" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Month 8 — coming soon; open preview">
+                        <div class="aspect-[16/10] glass-month-thumb-locked flex flex-col items-center justify-center shrink-0 border-b border-white/10">
+                            <svg class="w-12 h-12 text-neon-white/45 mb-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" aria-hidden="true">
+                                <rect x="5" y="11" width="14" height="10" rx="1.5" />
+                                <path d="M8 11V7a4 4 0 018 0v4" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <span class="font-racing text-[10px] uppercase tracking-[0.4em] text-neon-white/40">Locked</span>
+                        </div>
+                        <div class="p-5 flex flex-col flex-1">
+                            <p class="font-telemetry text-[10px] uppercase tracking-[0.35em] text-white/35 mb-1">Coming</p>
+                            <h3 class="font-racing text-xl text-white/65 uppercase mb-2">Month 8</h3>
+                            <p class="font-racing text-base text-neon-white/45 uppercase mb-3">Coming soon</p>
+                            <p class="font-body text-sm text-neon-white/45 leading-relaxed flex-1">Pit lane isn’t open yet — telemetry will drop when this phase goes live.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
         <!-- 2. Pit Stop Learnings -->
         <section class="px-4 sm:px-8 lg:px-16 py-20 border-t border-white/10" id="pit-stop">
             <div class="max-w-6xl mx-auto">
-                <h2 class="reveal font-racing italic font-bold text-3xl sm:text-4xl uppercase text-white mb-2 tracking-wide">
-                    <span class="text-f1-red">April</span> <span class="text-race-yellow">Pit Refresh</span>
+                <h2 class="reveal font-racing font-bold text-3xl sm:text-4xl uppercase text-white mb-2 tracking-wide">
+                    <span class="text-papaya/80">April</span> <span class="text-white/80">pit refresh</span>
                 </h2>
                 <p class="reveal reveal-delay-1 text-neon-white/60 mb-12 max-w-xl">Pit Stop Tasks — quick wins, maximum downforce on your career.</p>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5 auto-rows-fr">
                     <article class="bento-enter bento-from-left bento-dur-slow md:col-span-2 lg:col-span-2 rounded-xl glass-bento p-6">
-                        <h3 class="font-racing italic text-xl text-f1-red uppercase mb-3">Pit Stop · Version Control (Git)</h3>
+                        <h3 class="font-racing text-xl text-white/90 uppercase mb-3">Pit Stop · Version Control (Git)</h3>
                         <p class="text-neon-white/85 leading-relaxed font-body not-italic">🔧 Swapped the engine: Gained mastery of local/remote repositories, staging, and commits for efficient project history management.</p>
                     </article>
                     <article class="bento-enter bento-from-right bento-dur-fast rounded-xl glass-bento p-6">
-                        <h3 class="font-racing italic text-lg text-race-yellow uppercase mb-3">Pit Stop · Resume Excellence</h3>
+                        <h3 class="font-racing text-lg text-white/85 uppercase mb-3">Pit Stop · Resume Excellence</h3>
                         <p class="text-neon-white/85 text-sm leading-relaxed font-body not-italic">⏱️ Optimized aerodynamics: Refocused professional presence on quantifiable impact (e.g., the program's 18% selection rate).</p>
                     </article>
                     <article class="bento-enter bento-from-bottom bento-dur-mid rounded-xl glass-bento p-6">
-                        <h3 class="font-racing italic text-lg text-white uppercase mb-3">Pit Stop · ICT Careers</h3>
+                        <h3 class="font-racing text-lg text-white uppercase mb-3">Pit Stop · ICT Careers</h3>
                         <p class="text-neon-white/85 text-sm leading-relaxed font-body not-italic">🏁 Track Analysis: Investigated tech ecosystems and mentorship pathways to define my race strategy.</p>
                     </article>
                     <article class="bento-enter bento-from-left bento-dur-slow lg:col-span-2 rounded-xl glass-bento p-6">
-                        <h3 class="font-racing italic text-xl text-f1-red uppercase mb-3">Pit Stop · Public Speaking</h3>
+                        <h3 class="font-racing text-xl text-white/90 uppercase mb-3">Pit Stop · Public Speaking</h3>
                         <p class="text-neon-white/85 leading-relaxed font-body not-italic">🎤 Victory Lane: Refined presentation skills for clear, engaging technical communication and networking.</p>
                     </article>
                     <article class="bento-enter bento-from-right bento-dur-mid rounded-xl glass-bento p-6">
-                        <h3 class="font-racing italic text-lg text-race-yellow uppercase mb-3">Pit Stop · How to Learn</h3>
+                        <h3 class="font-racing text-lg text-white/85 uppercase mb-3">Pit Stop · How to Learn</h3>
                         <p class="text-neon-white/85 text-sm leading-relaxed font-body not-italic">🧠 Engineering Specs: Adopted rapid skill acquisition frameworks for continuous, data-driven learning.</p>
                     </article>
                 </div>
@@ -572,8 +1018,8 @@
         <!-- 3. Git telemetry — pit-wall feed -->
         <section class="px-4 sm:px-8 lg:px-16 py-20 border-t border-white/10" id="telemetry">
             <div class="max-w-5xl mx-auto">
-                <h2 class="reveal font-racing italic font-bold text-3xl uppercase text-white mb-2">
-                    <span class="text-race-yellow">Git</span> <span class="text-neon-white/80">Telemetry</span>
+                <h2 class="reveal font-racing font-bold text-3xl uppercase text-white mb-2 tracking-wide">
+                    <span class="text-papaya/80">Git</span> <span class="text-white/80">telemetry</span>
                 </h2>
                 <p class="reveal reveal-delay-1 text-neon-white/50 text-sm font-mono mb-8 uppercase tracking-widest">Direct data feed · Session stream</p>
 
@@ -581,19 +1027,16 @@
                     <!-- Top bar: F1 broadcast strip -->
                     <div class="flex flex-wrap items-center justify-between gap-3 px-4 py-3 border-b border-white/10 bg-[#0d0d12] telemetry-grid-line">
                         <div class="flex flex-wrap items-center gap-3 sm:gap-6">
-                            <span class="font-mono text-[10px] sm:text-xs text-f1-red/90 tracking-[0.2em]">FEED 01</span>
-                            <span class="font-racing italic text-sm sm:text-base text-white tracking-wide uppercase">Git · Live pipeline</span>
+                            <span class="font-mono text-[10px] sm:text-xs text-white/40 tracking-wider">FEED 01</span>
+                            <span class="font-racing text-sm sm:text-base text-white tracking-wide uppercase">Git · Live pipeline</span>
                             <span class="hidden sm:inline font-mono text-[10px] text-white/35">│</span>
                             <span class="hidden sm:inline font-mono text-[10px] text-white/45 tracking-wider">CH-A7 · REPO</span>
                         </div>
                         <div class="flex items-center gap-4">
                             <span class="font-mono text-[10px] sm:text-xs text-white/50 tabular-nums">T&#8209;0:00:00</span>
-                            <div class="live-indicator flex items-center gap-2 px-3 py-1.5 rounded-sm bg-black/40 border border-race-yellow/50">
-                                <span class="relative flex h-2.5 w-2.5">
-                                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-race-yellow opacity-40"></span>
-                                    <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-race-yellow"></span>
-                                </span>
-                                <span class="font-racing italic text-xs text-race-yellow uppercase tracking-[0.25em]">Live</span>
+                            <div class="live-indicator flex items-center gap-2 px-3 py-1.5 rounded-sm bg-black/30 border border-white/15">
+                                <span class="inline-flex rounded-full h-2 w-2 bg-emerald-500/85" aria-hidden="true"></span>
+                                <span class="font-racing text-xs text-emerald-400/95 uppercase tracking-wider">Live</span>
                             </div>
                         </div>
                     </div>
@@ -603,9 +1046,9 @@
                         <aside class="lg:col-span-3 p-4 border-b lg:border-b-0 border-white/10 bg-black/25 font-mono text-[10px] sm:text-xs">
                             <p class="text-white/35 uppercase tracking-[0.35em] mb-4">Channels</p>
                             <ul class="space-y-3 text-white/70">
-                                <li class="flex justify-between gap-2 border-l-2 border-f1-red pl-2"><span>GIT_SYNC</span><span class="text-emerald-400/90">OK</span></li>
+                                <li class="flex justify-between gap-2 border-l-2 border-white/20 pl-2"><span>GIT_SYNC</span><span class="text-emerald-400/80">OK</span></li>
                                 <li class="flex justify-between gap-2 pl-2 border-l border-transparent"><span>BRANCH</span><span class="text-white/50">main</span></li>
-                                <li class="flex justify-between gap-2 pl-2 border-l border-transparent"><span>DIRTY</span><span class="text-race-yellow/90">0</span></li>
+                                <li class="flex justify-between gap-2 pl-2 border-l border-transparent"><span>DIRTY</span><span class="text-white/50">0</span></li>
                                 <li class="flex justify-between gap-2 pl-2 border-l border-transparent"><span>LAT</span><span class="text-white/40">—</span></li>
                             </ul>
                             <div class="mt-6 h-16 telemetry-spark relative overflow-hidden rounded-sm" aria-hidden="true">
@@ -620,14 +1063,14 @@
                             <div class="text-white/45 mb-2">$ git status</div>
                             <div class="text-emerald-400/95 mb-5 pl-0 sm:pl-1">On branch main — working tree clean</div>
                             <div class="flex flex-wrap items-center gap-2 text-neon-white/95">
-                                <span class="text-f1-red">$</span>
-                                <span>git commit -m</span>
-                                <span class="text-race-yellow">"RECORD LAP: All April tasks complete"</span>
+                                <span class="text-white/50">$</span>
+                                <span class="text-white/60">git commit -m</span>
+                                <span class="text-white/75">"RECORD LAP: All April tasks complete"</span>
                             </div>
                             <div class="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3 text-[10px] sm:text-xs font-mono border-t border-white/10 pt-5">
                                 <div>
                                     <p class="text-white/35 uppercase mb-1">Delta</p>
-                                    <p class="text-race-yellow">+0.000</p>
+                                    <p class="text-white/60">+0.000</p>
                                 </div>
                                 <div>
                                     <p class="text-white/35 uppercase mb-1">Commit</p>
@@ -635,7 +1078,7 @@
                                 </div>
                                 <div>
                                     <p class="text-white/35 uppercase mb-1">Session</p>
-                                    <p class="text-f1-red/90">APR 26</p>
+                                    <p class="text-white/45">APR 26</p>
                                 </div>
                                 <div>
                                     <p class="text-white/35 uppercase mb-1">Quality</p>
@@ -647,22 +1090,57 @@
 
                     <div class="grid grid-cols-3 gap-px bg-white/10 text-[10px] sm:text-xs font-mono border-t border-white/10">
                         <div class="bg-[#0a0a0f] px-3 py-3 text-center text-white/45 uppercase tracking-wider">Lap time</div>
-                        <div class="bg-[#0a0a0f] px-3 py-3 text-center text-race-yellow font-racing italic">APR 2026</div>
-                        <div class="bg-[#0a0a0f] px-3 py-3 text-center text-f1-red/95 uppercase tracking-wider">Optimal</div>
+                        <div class="bg-[#0a0a0f] px-3 py-3 text-center text-white/50 font-racing text-sm">APR 2026</div>
+                        <div class="bg-[#0a0a0f] px-3 py-3 text-center text-white/40 uppercase tracking-wider">Optimal</div>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <!-- Telemetry Logs — Medium / writing -->
+        <section class="px-4 sm:px-8 lg:px-16 py-20 border-t border-white/10" id="telemetry-logs" aria-labelledby="telemetry-logs-heading">
+            <div class="max-w-5xl mx-auto">
+                <h2 id="telemetry-logs-heading" class="reveal font-racing text-3xl sm:text-4xl uppercase tracking-wide text-white mb-3">
+                    <span class="text-papaya/80">Telemetry</span> <span class="text-white/80">logs</span>
+                </h2>
+                <p class="reveal reveal-delay-1 font-telemetry text-neon-white/55 text-xs sm:text-sm uppercase tracking-[0.4em] mb-10">Field notes · long-form drafts · publish feed</p>
+
+                <div class="reveal reveal-delay-2 flex justify-center mb-12">
+                    <!-- INSERT YOUR MEDIUM LINK HERE → replace href below -->
+                    <a href="https://medium.com/@wangechitabitha42" target="_blank" rel="noopener noreferrer" class="btn-medium-cta font-racing font-black text-base sm:text-lg uppercase tracking-[0.1em] px-10 py-5 rounded-sm inline-flex items-center gap-3 text-center" aria-label="Read my articles on Medium (opens in new tab)">
+                        <span class="leading-tight">READ MY ARTICLES ON MEDIUM</span>
+                        <svg class="w-6 h-6 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                            <path d="M15 3h6v6"/>
+                            <path d="M10 14 21 3"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <article class="reveal reveal-delay-3 rounded-xl glass-bento p-8 sm:p-10 max-w-3xl mx-auto">
+                    <p class="font-telemetry text-[10px] uppercase tracking-[0.45em] text-white/45 mb-3">Featured · Latest post</p>
+                    <h3 class="font-racing text-2xl sm:text-3xl text-white uppercase leading-tight mb-4">Your latest headline goes here — swap this title for your Medium story</h3>
+                    <p class="font-body text-base text-neon-white/82 leading-relaxed mb-8">Replace this sentence with one-line teaser copy that pulls readers onto the pace lap of your essay.</p>
+                    <!-- Swap href with your real article URL -->
+                    <a href="https://medium.com/@REPLACE_WITH_YOUR_MEDIUM_USERNAME/latest" target="_blank" rel="noopener noreferrer" class="font-racing font-semibold text-white/90 uppercase tracking-wide inline-flex items-center gap-2 border-b border-white/25 pb-0.5 hover:text-papaya hover:border-papaya/40 transition-colors">
+                        Read more
+                        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                        </svg>
+                    </a>
+                </article>
             </div>
         </section>
 
         <!-- 4. Values — TRACK RULES -->
         <section class="px-4 sm:px-8 lg:px-16 py-20 border-t border-white/10" id="rules">
             <div class="max-w-3xl mx-auto text-center">
-                <p class="reveal font-mono text-[10px] sm:text-xs text-race-yellow/80 uppercase tracking-[0.5em] mb-3">Values</p>
-                <h2 class="reveal reveal-delay-1 font-racing italic font-extrabold text-4xl sm:text-5xl md:text-6xl uppercase text-white mb-3 tracking-tight drop-shadow-[0_0_40px_rgba(225,6,0,0.2)]">
-                    <span class="text-f1-red">TRACK</span> <span class="text-neon-white">RULES</span>
+                <p class="reveal font-mono text-[10px] sm:text-xs text-white/45 uppercase tracking-[0.4em] mb-3">Values</p>
+                <h2 class="reveal reveal-delay-1 font-racing font-extrabold text-4xl sm:text-5xl md:text-6xl uppercase text-white mb-3 tracking-tight">
+                    <span class="text-papaya/80">Track</span> <span class="text-white/80">rules</span>
                 </h2>
                 <p class="reveal reveal-delay-1 text-neon-white/55 text-sm font-mono uppercase tracking-widest mb-10">Rules of engagement</p>
-                <div class="reveal reveal-delay-2 rounded-xl border border-white/15 bg-white/[0.04] backdrop-blur-lg px-8 py-10 shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_0_40px_rgba(0,0,0,0.4)]">
+                <div class="reveal reveal-delay-2 rounded-xl border border-white/10 bg-white/[0.035] backdrop-blur-md px-8 py-10 shadow-none">
                     <p class="mt-2 text-neon-white/85 leading-relaxed text-base font-body not-italic">
                         Committed to professional integrity, collaboration, and the KamiLimu Code of Conduct.
                     </p>
@@ -672,24 +1150,69 @@
 
         <!-- 5. Checkered Flag Footer -->
         <footer class="relative px-4 sm:px-8 lg:px-16 pt-16 pb-12 border-t border-white/10 overflow-hidden">
-            <div class="absolute inset-0 opacity-[0.07] pointer-events-none" style="background-image: repeating-conic-gradient(#fff 0% 25%, transparent 0% 50%) 50% / 24px 24px;"></div>
+            <div class="absolute inset-0 opacity-[0.035] pointer-events-none" style="background-image: repeating-conic-gradient(#fff 0% 25%, transparent 0% 50%) 50% / 24px 24px;"></div>
             <div class="relative max-w-5xl mx-auto">
                 <div class="reveal flex flex-col items-center">
-                    <div class="font-racing italic font-bold text-5xl sm:text-6xl lg:text-7xl uppercase tracking-tight text-center leading-none">
-                        <span class="text-f1-red drop-shadow-[0_0_20px_rgba(225,6,0,0.5)]">Kami</span><span class="text-white">Limu</span>
+                    <div class="font-racing font-bold text-5xl sm:text-6xl lg:text-7xl uppercase tracking-tight text-center leading-none">
+                        <span class="text-f1-red/90">Kami</span><span class="text-white">Limu</span>
                     </div>
-                    <p class="mt-2 font-racing italic text-race-yellow text-sm tracking-[0.4em] uppercase">Checkered Flag</p>
+                    <p class="mt-2 font-racing text-white/45 text-sm tracking-widest uppercase">Checkered Flag</p>
                 </div>
 
-                <div class="reveal reveal-delay-1 mt-12 flex flex-wrap justify-center gap-4 sm:gap-6">
-                    <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="btn-ignition group flex items-center justify-center min-w-[140px] px-6 py-4 bg-carbon-mid border-2 border-white/20 rounded-sm font-racing italic font-bold text-white uppercase text-sm tracking-wider hover:bg-white/5">
-                        <span class="text-neon-white/60 text-[10px] block w-full text-center mb-1 normal-case font-body not-italic tracking-normal">Let's Connect on</span>
-                        GitHub
-                    </a>
-                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="btn-ignition group flex flex-col items-center justify-center min-w-[140px] px-6 py-4 bg-carbon-mid border-2 border-white/20 rounded-sm font-racing italic font-bold text-white uppercase text-sm tracking-wider hover:bg-white/5">
-                        <span class="text-neon-white/60 text-[10px] block w-full text-center mb-1 normal-case font-body not-italic tracking-normal">Let's Connect on</span>
-                        LinkedIn
-                    </a>
+                <div class="reveal reveal-delay-1 mt-12 max-w-lg mx-auto">
+                    <p class="text-center font-mono text-[10px] uppercase tracking-[0.4em] text-white/35 mb-4">Connect</p>
+                    <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-stretch">
+                        <a
+                            href="https://github.com/Tabbymargaret"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="group flex items-center gap-4 rounded-lg border border-white/12 bg-white/[0.04] backdrop-blur-sm px-4 py-3.5 sm:flex-1 sm:min-w-0 hover:border-white/22 hover:bg-white/[0.07] focus:outline-none focus-visible:ring-2 focus-visible:ring-papaya/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#08080b] transition-colors"
+                            aria-label="GitHub profile (opens in new tab)"
+                        >
+                            <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-md bg-[#181717] border border-white/10" aria-hidden="true">
+                                <!-- GitHub Invertocat mark (monochrome; per github.com/logos linking use) -->
+                                <svg class="h-7 w-7 text-white" viewBox="0 0 98 96" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                    <path
+                                        fill="currentColor"
+                                        fill-rule="evenodd"
+                                        clip-rule="evenodd"
+                                        d="M48.854 0C21.839 0 0 22 0 49.217c0 21.756 13.993 40.172 33.405 46.69 2.427.49 3.316-1.059 3.316-2.362 0-1.141-.08-5.052-.08-9.127-13.59 2.934-16.42-5.867-16.42-5.867-2.184-5.704-5.42-7.17-5.42-7.17-4.448-3.015.324-3.015.324-3.015 4.934.326 7.523 5.052 7.523 5.052 4.367 7.496 11.404 5.378 14.235 4.074.404-3.178 1.699-5.378 3.074-6.6-10.839-1.225-22.243-5.38-22.243-24.283 0-5.378 1.94-9.778 5.014-13.2-.485-1.222-2.184-6.275.486-13.038 0 0 4.125-1.304 13.426 5.052a46.97 46.97 0 0 1 12.214-1.63c4.125 0 8.33.571 12.213 1.63 9.302-6.356 13.427-5.052 13.427-5.052 2.67 6.763.97 11.816.485 13.038 3.155 3.422 5.015 7.822 5.015 13.2 0 18.905-11.404 23.06-22.324 24.283 1.78 1.548 3.316 4.481 3.316 9.126 0 6.6-.08 11.897-.08 13.526 0 1.304.89 2.853 3.316 2.364 19.412-6.52 33.405-24.935 33.405-46.691C97.707 22 75.788 0 48.854 0z"
+                                    />
+                                </svg>
+                            </span>
+                            <span class="min-w-0 flex-1 text-left">
+                                <span class="block font-racing text-sm font-bold text-white tracking-wide uppercase">GitHub</span>
+                                <span class="block font-body text-xs text-white/45 truncate mt-0.5">@Tabbymargaret</span>
+                            </span>
+                            <svg class="h-4 w-4 shrink-0 text-white/30 group-hover:text-white/55 transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M7 17L17 7M17 7H7M17 7V17" />
+                            </svg>
+                        </a>
+                        <a
+                            href="https://www.linkedin.com/in/tabitha-margaret/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="group flex items-center gap-4 rounded-lg border border-white/12 bg-white/[0.04] backdrop-blur-sm px-4 py-3.5 sm:flex-1 sm:min-w-0 hover:border-[#0A66C2]/45 hover:bg-[#0A66C2]/[0.08] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0A66C2]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#08080b] transition-colors"
+                            aria-label="LinkedIn profile (opens in new tab)"
+                        >
+                            <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-md bg-[#0A66C2] border border-white/10" aria-hidden="true">
+                                <!-- LinkedIn “in” bug (brand blue background; mark per LinkedIn brand guidelines for profile links) -->
+                                <svg class="h-6 w-6 text-white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                    <path
+                                        fill="currentColor"
+                                        d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+                                    />
+                                </svg>
+                            </span>
+                            <span class="min-w-0 flex-1 text-left">
+                                <span class="block font-racing text-sm font-bold text-white tracking-wide uppercase">LinkedIn</span>
+                                <span class="block font-body text-xs text-white/45 truncate mt-0.5">Professional profile</span>
+                            </span>
+                            <svg class="h-4 w-4 shrink-0 text-white/30 group-hover:text-white/55 transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M7 17L17 7M17 7H7M17 7V17" />
+                            </svg>
+                        </a>
+                    </div>
                 </div>
 
                 <p class="reveal reveal-delay-2 mt-12 text-center text-neon-white/40 text-sm">
@@ -697,6 +1220,46 @@
                 </p>
             </div>
         </footer>
+
+        <!-- Month cards: gallery + Medium (populate MONTH_DETAILS in script below) -->
+        <div id="month-modal" class="month-modal" aria-hidden="true">
+            <div class="month-modal__backdrop" data-month-modal-close="1" tabindex="-1" aria-hidden="true"></div>
+            <div class="month-modal__panel backdrop-blur-md p-5 sm:p-8" role="document">
+                <div class="flex items-start justify-between gap-4 mb-6">
+                    <div class="min-w-0">
+                        <p id="month-modal-eyebrow" class="font-mono text-[10px] uppercase tracking-[0.35em] text-white/45"></p>
+                        <h2 id="month-modal-title" class="font-racing text-2xl sm:text-3xl text-white uppercase tracking-wide mt-1 leading-tight"></h2>
+                        <p id="month-modal-phase" class="font-racing text-sm text-papaya/85 uppercase tracking-wider mt-1"></p>
+                    </div>
+                    <button type="button" id="month-modal-close" class="shrink-0 rounded-md border border-white/14 bg-white/[0.04] px-3 py-2 text-white/80 hover:bg-white/[0.08] hover:text-white hover:border-white/25 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-papaya/55" aria-label="Close month details">&times;</button>
+                </div>
+                <div class="grid lg:grid-cols-2 gap-8 lg:gap-10 items-start">
+                    <div class="min-w-0">
+                        <h3 class="font-mono text-[10px] uppercase tracking-[0.4em] text-white/42 mb-3">Captured this month</h3>
+                        <div id="month-modal-gallery-empty" class="hidden rounded-lg border border-dashed border-white/15 bg-white/[0.02] px-4 py-10 text-center text-sm text-neon-white/50 font-body leading-relaxed"></div>
+                        <div id="month-modal-gallery-view" class="hidden">
+                            <div class="rounded-xl border border-white/12 bg-[#09090f] shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] overflow-hidden">
+                                <div class="relative month-gallery-main-wrap flex items-center justify-center px-11 sm:px-14 py-6">
+                                    <button type="button" id="month-gallery-prev" class="absolute left-2 top-1/2 z-10 -translate-y-1/2 rounded-md border border-white/15 bg-black/55 px-2.5 py-2 text-white/85 hover:bg-white/10 hover:border-white/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-papaya/55 disabled:opacity-25 disabled:pointer-events-none" aria-label="Previous photo">‹</button>
+                                    <img id="month-gallery-main" src="" alt="" width="960" height="640" decoding="async" class="month-gallery-img max-w-full max-h-[min(40vh,400px)] w-auto h-auto object-contain mx-auto rounded-sm shadow-lg" loading="lazy" />
+                                    <button type="button" id="month-gallery-next" class="absolute right-2 top-1/2 z-10 -translate-y-1/2 rounded-md border border-white/15 bg-black/55 px-2.5 py-2 text-white/85 hover:bg-white/10 hover:border-white/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-papaya/55 disabled:opacity-25 disabled:pointer-events-none" aria-label="Next photo">›</button>
+                                </div>
+                            </div>
+                            <div class="mt-2 flex items-center justify-center gap-4">
+                                <span id="month-gallery-count" class="font-mono tabular-nums text-xs text-white/50" aria-live="polite"></span>
+                            </div>
+                            <p class="mt-4 text-[10px] font-mono uppercase tracking-[0.32em] text-white/38">Filmstrip · scroll sideways</p>
+                            <div id="month-gallery-strip" class="month-gallery-strip mt-2" role="toolbar" aria-label="Select a photo thumbnail"></div>
+                        </div>
+                    </div>
+                    <div class="min-w-0">
+                        <h3 class="font-mono text-[10px] uppercase tracking-[0.4em] text-white/42 mb-3">Field notes · Medium</h3>
+                        <div id="month-modal-medium"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <script>
@@ -764,6 +1327,364 @@
                     }
                 } else {
                     playSyntheticEngine();
+                }
+            });
+        })();
+    </script>
+    <script>
+        (function () {
+            var modal = document.getElementById('month-modal');
+            if (!modal) return;
+
+            var closeBtn = document.getElementById('month-modal-close');
+            var backdrop = modal.querySelector('[data-month-modal-close]');
+            var eyebrowEl = document.getElementById('month-modal-eyebrow');
+            var titleEl = document.getElementById('month-modal-title');
+            var phaseEl = document.getElementById('month-modal-phase');
+            var galleryView = document.getElementById('month-modal-gallery-view');
+            var galleryEmpty = document.getElementById('month-modal-gallery-empty');
+            var galleryMain = document.getElementById('month-gallery-main');
+            var galleryPrev = document.getElementById('month-gallery-prev');
+            var galleryNext = document.getElementById('month-gallery-next');
+            var galleryCount = document.getElementById('month-gallery-count');
+            var galleryStrip = document.getElementById('month-gallery-strip');
+            var mediumEl = document.getElementById('month-modal-medium');
+
+            var galleryItems = [];
+            var galleryIndex = 0;
+
+            var PLACEHOLDER = 'REPLACE_WITH_YOUR_MEDIUM_USERNAME';
+            /* Edit per month — gallery[].src paths and medium.url/title/blurb */
+            var MONTH_DETAILS = {
+                '1': {
+                    eyebrow: 'April',
+                    title: 'Month 1',
+                    phase: 'The Formation Lap',
+                    locked: false,
+                    gallery: [
+                        { src: 'assets/month1.jpg', alt: 'Month 1 — formation lap' }
+                    ],
+                    medium: {
+                        url: 'https://medium.com/@REPLACE_WITH_YOUR_MEDIUM_USERNAME/month-1-formation-lap',
+                        title: 'Formation lap notes',
+                        blurb: 'Onboarding, Git mastery, and professional branding — reflections on Kamilimu Month 1.'
+                    }
+                },
+                '2': {
+                    eyebrow: 'May',
+                    title: 'Month 2',
+                    phase: 'The Acceleration Phase',
+                    locked: false,
+                    gallery: [{ src: 'assets/month2.jpg', alt: 'Month 2 — acceleration stretch' }],
+                    medium: {
+                        url: 'https://medium.com/@REPLACE_WITH_YOUR_MEDIUM_USERNAME/month-2-acceleration',
+                        title: 'Acceleration phase recap',
+                        blurb: 'Public speaking, hackathon sprint, and advocacy — Month 2 in the cockpit.'
+                    }
+                },
+                '3': {
+                    eyebrow: 'Coming',
+                    title: 'Month 3',
+                    phase: 'Pit lane closed',
+                    locked: true,
+                    gallery: [],
+                    medium: null
+                },
+                '4': {
+                    eyebrow: 'Coming',
+                    title: 'Month 4',
+                    phase: 'Pit lane closed',
+                    locked: true,
+                    gallery: [],
+                    medium: null
+                },
+                '5': {
+                    eyebrow: 'Coming',
+                    title: 'Month 5',
+                    phase: 'Pit lane closed',
+                    locked: true,
+                    gallery: [],
+                    medium: null
+                },
+                '6': {
+                    eyebrow: 'Coming',
+                    title: 'Month 6',
+                    phase: 'Pit lane closed',
+                    locked: true,
+                    gallery: [],
+                    medium: null
+                },
+                '7': {
+                    eyebrow: 'Coming',
+                    title: 'Month 7',
+                    phase: 'Pit lane closed',
+                    locked: true,
+                    gallery: [],
+                    medium: null
+                },
+                '8': {
+                    eyebrow: 'Coming',
+                    title: 'Month 8',
+                    phase: 'Pit lane closed',
+                    locked: true,
+                    gallery: [],
+                    medium: null
+                }
+            };
+
+            var modalOpen = false;
+            var lastFocus = null;
+
+            function escapeHtml(text) {
+                var d = document.createElement('div');
+                d.textContent = text == null ? '' : String(text);
+                return d.innerHTML;
+            }
+
+            function placeholderUrl(url) {
+                return !url || url.indexOf(PLACEHOLDER) !== -1;
+            }
+
+            function prefMotion() {
+                return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            }
+
+            function setGalleryIndex(idx) {
+                if (!galleryItems.length) return;
+                var n = galleryItems.length;
+                galleryIndex = ((idx % n) + n) % n;
+                var cur = galleryItems[galleryIndex];
+                if (galleryMain) {
+                    galleryMain.src = cur.src;
+                    galleryMain.alt = cur.alt || '';
+                    if (galleryIndex === 0) galleryMain.loading = 'eager';
+                }
+                if (galleryCount) {
+                    galleryCount.textContent = galleryIndex + 1 + ' / ' + n;
+                }
+                if (galleryPrev) galleryPrev.disabled = n <= 1;
+                if (galleryNext) galleryNext.disabled = n <= 1;
+                if (galleryStrip) {
+                    var thumbs = galleryStrip.querySelectorAll('.month-gallery-thumb');
+                    thumbs.forEach(function (t, i) {
+                        var on = i === galleryIndex;
+                        t.classList.toggle('is-current', on);
+                        t.setAttribute('aria-pressed', on ? 'true' : 'false');
+                    });
+                    var active = thumbs[galleryIndex];
+                    if (active && active.scrollIntoView) {
+                        active.scrollIntoView({
+                            inline: 'center',
+                            block: 'nearest',
+                            behavior: prefMotion() ? 'auto' : 'smooth'
+                        });
+                    }
+                }
+            }
+
+            function initGalleryViewer(items) {
+                galleryItems = items.slice();
+                galleryIndex = 0;
+                if (galleryStrip) {
+                    galleryStrip.innerHTML = '';
+                    galleryItems.forEach(function (meta, idx) {
+                        var b = document.createElement('button');
+                        b.type = 'button';
+                        b.className = 'month-gallery-thumb';
+                        b.setAttribute('data-gallery-idx', String(idx));
+                        b.setAttribute('aria-pressed', idx === 0 ? 'true' : 'false');
+                        b.setAttribute('aria-label', 'Show photo ' + (idx + 1) + ' of ' + galleryItems.length);
+                        var im = document.createElement('img');
+                        im.src = meta.src;
+                        im.alt = '';
+                        im.loading = idx < 4 ? 'eager' : 'lazy';
+                        im.decoding = 'async';
+                        b.appendChild(im);
+                        galleryStrip.appendChild(b);
+                    });
+                }
+                if (galleryView) galleryView.classList.remove('hidden');
+                if (galleryEmpty) galleryEmpty.classList.add('hidden');
+                setGalleryIndex(0);
+            }
+
+            function hideGalleryViewer() {
+                galleryItems = [];
+                if (galleryView) galleryView.classList.add('hidden');
+                if (galleryStrip) galleryStrip.innerHTML = '';
+                if (galleryMain) {
+                    galleryMain.removeAttribute('src');
+                    galleryMain.alt = '';
+                }
+                if (galleryCount) galleryCount.textContent = '';
+            }
+
+            function renderLockedMedium() {
+                var box = document.createElement('div');
+                box.className = 'rounded-xl border border-white/10 bg-white/[0.025] px-5 py-6 text-neon-white/55 text-sm font-body leading-relaxed';
+                box.innerHTML =
+                    '<p class="font-racing text-xs uppercase tracking-wider text-white/42 mb-2">Medium article</p>' +
+                    '<p>Open this modal again when the month ships — paste your Medium link and teaser copy inside <strong class="text-white/70 font-normal font-mono text-[11px]">MONTH_DETAILS</strong> for that slot.</p>';
+                mediumEl.appendChild(box);
+            }
+
+            function renderPlaceholderMedium(m) {
+                var box = document.createElement('div');
+                box.className = 'rounded-xl border border-dashed border-papaya/30 bg-papaya/[0.05] px-5 py-6 text-neon-white/70 text-sm font-body leading-relaxed';
+                box.innerHTML =
+                    '<p class="font-racing text-xs uppercase tracking-wider text-papaya/90 mb-2">Set your Medium URL</p>' +
+                    '<p>Replace <code class="font-mono text-[11px] text-white/80">' +
+                    escapeHtml(PLACEHOLDER) +
+                    '</code> in <strong class="text-white/80 font-normal">MONTH_DETAILS</strong> with your real Medium username or story link.</p>' +
+                    '<p class="mt-3 text-white/48 text-xs">Draft title: ‘' +
+                    escapeHtml(m.title) +
+                    '’</p>';
+                mediumEl.appendChild(box);
+            }
+
+            function renderMediumCard(m) {
+                var a = document.createElement('a');
+                a.href = m.url;
+                a.target = '_blank';
+                a.rel = 'noopener noreferrer';
+                a.className =
+                    'group block rounded-xl overflow-hidden border border-white/14 bg-white/[0.04] backdrop-blur-sm p-6 shadow-none transition-colors hover:border-papaya/45 hover:bg-white/[0.07] focus:outline-none focus-visible:ring-2 focus-visible:ring-papaya/55';
+                var ey = document.createElement('span');
+                ey.className = 'inline-block font-telemetry text-[10px] uppercase tracking-[0.35em] text-white/42 mb-2';
+                ey.textContent = 'Medium essay';
+                var h = document.createElement('p');
+                h.className = 'font-racing text-lg sm:text-xl text-white uppercase leading-snug tracking-wide group-hover:text-papaya/90 transition-colors';
+                h.textContent = m.title || 'Read on Medium';
+                var p = document.createElement('p');
+                p.className = 'mt-3 font-body text-sm text-neon-white/75 leading-relaxed';
+                p.textContent = m.blurb || '';
+                var row = document.createElement('span');
+                row.className = 'mt-5 inline-flex items-center gap-2 font-racing text-xs uppercase tracking-[0.2em] text-white/60 group-hover:text-white';
+                row.innerHTML =
+                    'Open on Medium <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7V17"/></svg>';
+                a.appendChild(ey);
+                a.appendChild(h);
+                a.appendChild(p);
+                a.appendChild(row);
+                mediumEl.appendChild(a);
+            }
+
+            function populateMedium(d) {
+                mediumEl.innerHTML = '';
+                if (d.locked || !d.medium) {
+                    renderLockedMedium();
+                    return;
+                }
+                if (placeholderUrl(d.medium.url)) {
+                    renderPlaceholderMedium(d.medium);
+                } else {
+                    renderMediumCard(d.medium);
+                }
+            }
+
+            function openModal(monthKey) {
+                var d = MONTH_DETAILS[monthKey];
+                if (!d) return;
+
+                lastFocus = document.activeElement;
+
+                eyebrowEl.textContent = d.eyebrow || '';
+                titleEl.textContent = d.title || '';
+                phaseEl.textContent = d.phase || '';
+
+                hideGalleryViewer();
+                if (galleryEmpty) {
+                    galleryEmpty.classList.add('hidden');
+                    galleryEmpty.textContent = '';
+                }
+
+                if (d.locked) {
+                    if (galleryEmpty) {
+                        galleryEmpty.textContent =
+                            'This stint is still parked in the paddock — your photo gallery unlocks once you flip the telemetry for Month ' +
+                            monthKey +
+                            '.';
+                        galleryEmpty.classList.remove('hidden');
+                    }
+                } else if (!d.gallery || d.gallery.length === 0) {
+                    if (galleryEmpty) {
+                        galleryEmpty.textContent =
+                            'Drop photos into assets/month' +
+                            monthKey +
+                            '/gallery/ and list them inside MONTH_DETAILS in index.html for this lap.';
+                        galleryEmpty.classList.remove('hidden');
+                    }
+                } else {
+                    initGalleryViewer(d.gallery);
+                }
+
+                populateMedium(d);
+
+                modalOpen = true;
+                modal.classList.add('month-modal--open');
+                modal.setAttribute('aria-hidden', 'false');
+                document.body.classList.add('month-modal--scroll-lock');
+
+                window.setTimeout(function () {
+                    if (closeBtn) closeBtn.focus();
+                }, 0);
+            }
+
+            function closeModal() {
+                modalOpen = false;
+                modal.classList.remove('month-modal--open');
+                modal.setAttribute('aria-hidden', 'true');
+                document.body.classList.remove('month-modal--scroll-lock');
+                if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
+            }
+
+            document.querySelectorAll('.month-card-trigger').forEach(function (card) {
+                card.addEventListener('click', function () {
+                    openModal(card.getAttribute('data-month'));
+                });
+                card.addEventListener('keydown', function (e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        openModal(card.getAttribute('data-month'));
+                    }
+                });
+            });
+
+            if (closeBtn) closeBtn.addEventListener('click', closeModal);
+            if (backdrop) backdrop.addEventListener('click', closeModal);
+
+            if (galleryPrev) {
+                galleryPrev.addEventListener('click', function () {
+                    setGalleryIndex(galleryIndex - 1);
+                });
+            }
+            if (galleryNext) {
+                galleryNext.addEventListener('click', function () {
+                    setGalleryIndex(galleryIndex + 1);
+                });
+            }
+            if (galleryStrip) {
+                galleryStrip.addEventListener('click', function (e) {
+                    var b = e.target.closest('.month-gallery-thumb');
+                    if (!b || !galleryStrip.contains(b)) return;
+                    var i = parseInt(b.getAttribute('data-gallery-idx'), 10);
+                    if (!isNaN(i)) setGalleryIndex(i);
+                });
+            }
+
+            document.addEventListener('keydown', function (e) {
+                if (!modalOpen) return;
+                if (e.key === 'Escape') {
+                    closeModal();
+                    return;
+                }
+                if (!galleryItems.length) return;
+                if (e.key === 'ArrowLeft') {
+                    e.preventDefault();
+                    setGalleryIndex(galleryIndex - 1);
+                } else if (e.key === 'ArrowRight') {
+                    e.preventDefault();
+                    setGalleryIndex(galleryIndex + 1);
                 }
             });
         })();
